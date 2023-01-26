@@ -4,9 +4,11 @@ require "globals"
 local love = require "love"
 -- Medusa is simple the Player Object
 -- Todo, change back all medusa work to player 
+local Medusa = require "objects/Medusa" -- importing Player object
 
-local Medusa = require "objects/Medusa" -- importing Medusa object
-local RealMedusa = require "objects/RealMedusa" -- importing Medusa object
+-- RealMedusa is the character object
+local RealMedusa = require "objects/RealMedusa" 
+local Snake = require "objects/Snake" 
 local Target = require "objects/Target" -- importing Target object
 local Game = require "states/Game" -- importing game object
 local Menu = require "states/Menu" -- importing menu object 
@@ -20,6 +22,7 @@ function love.load()
     game = Game()
     medusa = Medusa()
     RealMedusa = RealMedusa()
+    snake = Snake()
     target = Target()
     menu = Menu(game, medusa) -- Create a menu object
 end
@@ -85,6 +88,7 @@ function love.draw()
         target:draw(target)
         RealMedusa:draw(RealMedusa)
         medusa:draw(medusa)
+        snake:draw(snake)
 
         -- draw ennemies or player
         -- for _, asteroid in pairs(asteroids) do
