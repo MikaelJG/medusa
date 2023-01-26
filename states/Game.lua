@@ -35,6 +35,17 @@ function Game()
                     "center",
                     1
                 ):draw()
+                Text(
+                    "QUIT",
+                    0,
+                    love.graphics.getHeight() * 0.4,
+                    "h1",
+                    false,
+                    false,
+                    love.graphics.getWidth(),
+                    "center",
+                    1
+                ):draw()
             end
         end,
 

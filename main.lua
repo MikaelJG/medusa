@@ -2,7 +2,7 @@
 require "globals"
 
 local love = require "love"
-local Player = require "objects/Player" -- importing player object
+local Medusa = require "objects/Medusa" -- importing player object
 local Game = require "states/Game" -- importing game object
 local Menu = require "states/Menu" -- importing menu object 
 
@@ -12,9 +12,9 @@ function love.load()
     love.mouse.setVisible(false)
     mouse_x, mouse_y = 0, 0
     
-    player = Player()
+    medusa = Medusa()
     game = Game()
-    menu = Menu(game, player) -- Create a menu object
+    menu = Menu(game, medusa) -- Create a menu object
 end
 
 -- KEYBINDINGS [ START ]--
