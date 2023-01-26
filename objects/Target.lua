@@ -6,7 +6,7 @@ function Target() -- takes in number of player lives
     target = {}
     target_x = 150 
     target_y = 150 
-    target_radius = 150 
+    target_radius = 15 
 
     return {
         -- x = love.graphics.getWidth() / 2,

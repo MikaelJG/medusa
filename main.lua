@@ -3,6 +3,7 @@ require "globals"
 
 local love = require "love"
 local Medusa = require "objects/Medusa" -- importing Medusa object
+local RealMedusa = require "objects/RealMedusa" -- importing Medusa object
 local Target = require "objects/Target" -- importing Target object
 local Game = require "states/Game" -- importing game object
 local Menu = require "states/Menu" -- importing menu object 
@@ -13,15 +14,11 @@ function love.load()
     love.mouse.setVisible(false)
     mouse_x, mouse_y = 0, 0
     
-    medusa = Medusa()
     game = Game()
+    medusa = Medusa()
+    RealMedusa = RealMedusa()
     target = Target()
     menu = Menu(game, medusa) -- Create a menu object
-    -- testing target
-    -- target = {}
-    -- target.x = 300
-    -- target.y = 300
-    -- target.radius = 50
 end
 
 -- KEYBINDINGS [ START ]--
@@ -83,11 +80,8 @@ function love.draw()
         -- player:drawLives(game.state.paused)
         -- draw player in center of screen
         target:draw(target)
-
-
-        -- testing target
-        -- love.graphics.setColor(1,0,0)
-        -- love.graphics.circle("fill", target.x, target.y, target.radius)
+        RealMedusa:draw(RealMedusa)
+        medusa:draw(medusa)
 
         -- draw ennemies or player
         -- for _, asteroid in pairs(asteroids) do

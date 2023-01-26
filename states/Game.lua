@@ -49,7 +49,7 @@ function Game()
             end
         end,
 
-        startNewGame = function (self, player)
+        startNewGame = function (self, medusa)
             self:changeGameState("running")
         
             -- ON START, spawn an enemy or player, like asteroids object here

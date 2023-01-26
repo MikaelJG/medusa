@@ -2,14 +2,11 @@ require "globals"
 
 local love = require "love"
 
-function Medusa()
-    medusa = {}
-    medusa_x = 200 
-    medusa_y = 200 
-    medusa_radius = 25 
-    -- size of player and angle for example
-    -- local SHIP_SIZE = 30
-    -- local VIEW_ANGLE = math.rad(90)
+function RealMedusa() -- takes in number of player lives
+    RealMedusa = {}
+    RealMedusa_x = 50 
+    RealMedusa_y = 50 
+    RealMedusa_radius = 35 
 
     return {
         -- x = love.graphics.getWidth() / 2,
@@ -22,8 +19,8 @@ function Medusa()
         -- lives = num_lives or 3, -- we now set player lives
 
         draw = function (self)
-            love.graphics.circle("fill", medusa_x, medusa_y, medusa_radius)
-            love.graphics.setColor(115/255, 170/255, 15/255, 0)
+            love.graphics.circle("fill", RealMedusa_x, RealMedusa_y, RealMedusa_radius)
+            love.graphics.setColor(255/255, 135/255, 130/255)
         end,
 
         -- we draw player lives on screen
@@ -38,4 +35,4 @@ function Medusa()
     }
 end
 
-return Medusa 
+return RealMedusa 
