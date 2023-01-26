@@ -2,7 +2,7 @@ require "globals"
 
 local love = require "love"
 
-function Player(num_lives) -- takes in number of player lives
+function Medusa() -- takes in number of player lives
     -- size of player and angle for example
     -- local SHIP_SIZE = 30
     -- local VIEW_ANGLE = math.rad(90)
@@ -32,4 +32,4 @@ function Player(num_lives) -- takes in number of player lives
     }
 end
 
-return Player
+return Medusa 
