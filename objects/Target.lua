@@ -3,7 +3,7 @@ require "globals"
 local love = require "love"
 
 function Target() -- takes in number of player lives
-    target = {}
+    local target = {}
     target.x = 150 
     target.y = 150 
     target.radius = 150 
@@ -18,9 +18,9 @@ function Target() -- takes in number of player lives
         -- set player lives
         -- lives = num_lives or 3, -- we now set player lives
 
-        draw = function (some, someelse)
-            love.graphics.circle("fill", target.x, target.y, target.radius)
-            love.graphics.setColor(255/255, 135/255, 130/255)
+        draw = function (self)
+            love.graphics.circle("fill", self.target.x, self.target.y, self.target.radius)
+            love.graphics.setColor(255/255, 135/255, 130/255, 0)
         end,
 
         -- we draw player lives on screen
