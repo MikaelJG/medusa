@@ -2,7 +2,8 @@
 require "globals"
 
 local love = require "love"
-local Medusa = require "objects/Medusa" -- importing player object
+local Medusa = require "objects/Medusa" -- importing Medusa object
+local Target = require "objects/Target" -- importing Target object
 local Game = require "states/Game" -- importing game object
 local Menu = require "states/Menu" -- importing menu object 
 
@@ -21,13 +22,13 @@ end
 function love.keypressed(key)
     if game.state.running then
         if key == "w" or key == "up" then -- for number pad keys (then keys keyboards)  or key == "kp8" then
-            -- player action on up key
-            -- player.thrusting = true
+            -- medusa action on up key
+            -- medusa.thrusting = true
         end
 
         if key == "space" or key == "down" then -- for numero pad keys (ten keys keyboards) or key == "kp5" then
-            -- player action on space key
-            -- player:shootLazer()
+            -- medusa action on space key
+            -- medusa:shootLazer()
         end
 
         if key == "escape" then
@@ -75,7 +76,7 @@ function love.draw()
         -- draw player lives
         -- player:drawLives(game.state.paused)
         -- draw player in center of screen
-        -- player:draw(game.state.paused)
+        medusa:draw(game.state.paused)
 
         -- draw ennemies or player
         -- for _, asteroid in pairs(asteroids) do
