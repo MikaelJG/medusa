@@ -38,7 +38,7 @@ function Game()
                 Text(
                     "QUIT",
                     0,
-                    love.graphics.getHeight() * 0.4,
+                    love.graphics.getHeight() * 0.65,
                     "h1",
                     false,
                     false,
