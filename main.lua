@@ -2,6 +2,9 @@
 require "globals"
 
 local love = require "love"
+-- Medusa is simple the Player Object
+-- Todo, change back all medusa work to player 
+
 local Medusa = require "objects/Medusa" -- importing Medusa object
 local RealMedusa = require "objects/RealMedusa" -- importing Medusa object
 local Target = require "objects/Target" -- importing Target object
