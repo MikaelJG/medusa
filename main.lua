@@ -15,12 +15,13 @@ function love.load()
     
     medusa = Medusa()
     game = Game()
+    target = Target()
     menu = Menu(game, medusa) -- Create a menu object
     -- testing target
-    target = {}
-    target.x = 300
-    target.y = 300
-    target.radius = 50
+    -- target = {}
+    -- target.x = 300
+    -- target.y = 300
+    -- target.radius = 50
 end
 
 -- KEYBINDINGS [ START ]--
@@ -81,8 +82,12 @@ function love.draw()
         -- draw player lives
         -- player:drawLives(game.state.paused)
         -- draw player in center of screen
-        love.graphics.setColor(1,0,0)
-        love.graphics.circle("fill", target.x, target.y, target.radius)
+        target:draw(target)
+
+
+        -- testing target
+        -- love.graphics.setColor(1,0,0)
+        -- love.graphics.circle("fill", target.x, target.y, target.radius)
 
         -- draw ennemies or player
         -- for _, asteroid in pairs(asteroids) do

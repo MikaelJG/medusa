@@ -3,10 +3,10 @@ require "globals"
 local love = require "love"
 
 function Target() -- takes in number of player lives
-    local target = {}
-    target.x = 150 
-    target.y = 150 
-    target.radius = 150 
+    target = {}
+    target_x = 150 
+    target_y = 150 
+    target_radius = 150 
 
     return {
         -- x = love.graphics.getWidth() / 2,
@@ -19,7 +19,7 @@ function Target() -- takes in number of player lives
         -- lives = num_lives or 3, -- we now set player lives
 
         draw = function (self)
-            love.graphics.circle("fill", self.target.x, self.target.y, self.target.radius)
+            love.graphics.circle("fill", target_x, target_y, target_radius)
             love.graphics.setColor(255/255, 135/255, 130/255, 0)
         end,
 
@@ -35,4 +35,4 @@ function Target() -- takes in number of player lives
     }
 end
 
-return Medusa 
+return Target 
