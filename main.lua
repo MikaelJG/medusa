@@ -2,7 +2,7 @@
 require "globals"
 
 local love = require "love"
-local Medusa = require "objects/Medusa" -- importing Medusa object
+local Player = require "objects/Player" -- importing Medusa object
 local RealMedusa = require "objects/RealMedusa" -- importing Medusa object
 local Target = require "objects/Target" -- importing Target object
 local Game = require "states/Game" -- importing game object
@@ -15,10 +15,10 @@ function love.load()
     mouse_x, mouse_y = 0, 0
     
     game = Game()
-    medusa = Medusa()
+    player = Player()
     RealMedusa = RealMedusa()
     target = Target()
-    menu = Menu(game, medusa) -- Create a menu object
+    menu = Menu(game, player) -- Create a menu object
 end
 
 -- KEYBINDINGS [ START ]--
@@ -81,7 +81,6 @@ function love.draw()
         -- draw player in center of screen
         target:draw(target)
         RealMedusa:draw(RealMedusa)
-        medusa:draw(medusa)
 
         -- draw ennemies or player
         -- for _, asteroid in pairs(asteroids) do
