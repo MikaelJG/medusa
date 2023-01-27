@@ -3,28 +3,28 @@ require "globals"
 
 local love = require "love"
 -- Medusa is simple the Player Object
--- Todo, change back all medusa work to player 
+-- Todo, change back all medusa work to player
 local Medusa = require "objects/Medusa" -- importing Player object
 
 -- RealMedusa is the character object
-local RealMedusa = require "objects/RealMedusa" 
-local Snake = require "objects/Snake" 
+local RealMedusa = require "objects/RealMedusa"
+local Snake = require "objects/Snake"
 local Target = require "objects/Target" -- importing Target object
 local Game = require "states/Game" -- importing game object
-local Menu = require "states/Menu" -- importing menu object 
+local Menu = require "states/Menu" -- importing menu object
 
 math.randomseed(os.time())
 
 function love.load()
     love.mouse.setVisible(false)
     mouse_x, mouse_y = 0, 0
-    
+
     game = Game()
     medusa = Medusa()
     RealMedusa = RealMedusa()
     snake = Snake()
     target = Target()
-    menu = Menu(game, medusa) -- Create a menu object
+    menu = Menu(game) -- Create a menu object
 end
 
 -- KEYBINDINGS [ START ]--
@@ -98,7 +98,7 @@ function love.draw()
     end
 
     love.graphics.setColor(1, 1, 1, 1)
-    
+
     if not game.state.running then -- draw cursor if not in running state
         love.graphics.circle("fill", mouse_x, mouse_y, 10)
     end
