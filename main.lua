@@ -87,7 +87,7 @@ function love.draw()
         -- draw player in center of screen
         target:draw(target)
         RealMedusa:draw(RealMedusa)
-        -- medusa:draw(medusa)
+        medusa:draw(medusa)
         snake:draw(snake)
 
         -- end

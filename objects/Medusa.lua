@@ -23,7 +23,7 @@ function Medusa()
 
         draw = function (self)
             love.graphics.circle("fill", medusa_x, medusa_y, medusa_radius)
-            love.graphics.setColor(115/255, 170/255, 15/255, 0)
+            love.graphics.setColor(115/255, 170/255, 15/255)
         end,
 
         -- we draw player lives on screen
