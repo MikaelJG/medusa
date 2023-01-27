@@ -2,14 +2,8 @@
 require "globals"
 
 local love = require "love"
--- Medusa is simple the Player Object
--- Todo, change back all medusa work to player
-local Medusa = require "objects/Medusa" -- importing Player object
 
--- RealMedusa is the character object
-local RealMedusa = require "objects/RealMedusa"
-local Snake = require "objects/Snake"
-local Target = require "objects/Target" -- importing Target object
+local Player = require "objects/Player"
 local Game = require "states/Game" -- importing game object
 local Menu = require "states/Menu" -- importing menu object
 
@@ -20,10 +14,6 @@ function love.load()
     mouse_x, mouse_y = 0, 0
 
     game = Game()
-    medusa = Medusa()
-    RealMedusa = RealMedusa()
-    snake = Snake()
-    target = Target()
     menu = Menu(game) -- Create a menu object
 end
 
