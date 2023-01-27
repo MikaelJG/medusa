@@ -23,7 +23,7 @@ function love.keypressed(key)
     if game.state.running then
         if key == "w" or key == "up" then -- for number pad keys (then keys keyboards)  or key == "kp8" then
             -- medusa action on up key
-            player.thrusting = true
+            player.walking = true
         end
 
         if key == "space" or key == "down" then -- for numero pad keys (ten keys keyboards) or key == "kp5" then
@@ -44,7 +44,7 @@ end
 function love.keyreleased(key)
     if key == "w" or key == "up" then -- or key == "kp8"
         -- player no action when key released
-        player.thrusting = false
+        player.walking = false
     end
 end
 

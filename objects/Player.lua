@@ -12,7 +12,7 @@ function Player(debugging)
         radius = SHIP_SIZE / 2,
         angle = VIEW_ANGLE, -- angle gets calculated as radian
         rotation = 0,
-        thrusting = false,
+        walking = false,
         thrust = {
             x = 0,
             y = 0,
@@ -59,7 +59,7 @@ function Player(debugging)
                 self.angle = self.angle - self.rotation
             end
 
-            if self.thrusting then
+            if self.walking then
                 self.thrust.x = self.thrust.x + self.thrust.speed * math.cos(self.angle) / FPS
                 self.thrust.y = self.thrust.y - self.thrust.speed * math.sin(self.angle) / FPS
             else
