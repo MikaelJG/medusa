@@ -16,7 +16,7 @@ function Player(debugging)
         walk = {
             x = 0,
             y = 0,
-            speed = 5,
+            speed = 1,
         },
 
         -- below will draw the flame behind the ship whenever we move
@@ -60,8 +60,8 @@ function Player(debugging)
             end
 
             if self.walking then
-                self.walk.x = self.walk.x + self.walk.speed * math.cos(self.angle) / FPS
-                self.walk.y = self.walk.y - self.walk.speed * math.sin(self.angle) / FPS
+                self.walk.x = self.walk.speed * math.cos(self.angle) 
+                self.walk.y = 0 - self.walk.speed * math.sin(self.angle)
             else
                 -- applies friction to stop the ship
                 if self.walk.x ~= 0 or self.walk.y ~= 0 then
