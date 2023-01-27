@@ -14,6 +14,7 @@ function love.load()
     mouse_x, mouse_y = 0, 0
 
     game = Game()
+    player = Player()
     menu = Menu(game) -- Create a menu object
 end
 
@@ -75,10 +76,7 @@ function love.draw()
         -- draw player lives
         -- player:drawLives(game.state.paused)
         -- draw player in center of screen
-        target:draw(target)
-        RealMedusa:draw(RealMedusa)
-        medusa:draw(medusa)
-        snake:draw(snake)
+        player:draw
 
         -- end
         game:draw(game.state.paused)
