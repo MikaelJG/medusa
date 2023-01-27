@@ -13,7 +13,7 @@ function Player(debugging)
         angle = VIEW_ANGLE, -- angle gets calculated as radian
         rotation = 0,
         walking = false,
-        thrust = {
+        walk = {
             x = 0,
             y = 0,
             speed = 5,
@@ -60,18 +60,18 @@ function Player(debugging)
             end
 
             if self.walking then
-                self.thrust.x = self.thrust.x + self.thrust.speed * math.cos(self.angle) / FPS
-                self.thrust.y = self.thrust.y - self.thrust.speed * math.sin(self.angle) / FPS
+                self.walk.x = self.walk.x + self.walk.speed * math.cos(self.angle) / FPS
+                self.walk.y = self.walk.y - self.walk.speed * math.sin(self.angle) / FPS
             else
                 -- applies friction to stop the ship
-                if self.thrust.x ~= 0 or self.thrust.y ~= 0 then
-                    self.thrust.x = self.thrust.x - friction * self.thrust.x / FPS
-                    self.thrust.y = self.thrust.y - friction * self.thrust.y / FPS
+                if self.walk.x ~= 0 or self.walk.y ~= 0 then
+                    self.walk.x = self.walk.x - friction * self.walk.x / FPS
+                    self.walk.y = self.walk.y - friction * self.walk.y / FPS
                 end
             end
 
-            self.x = self.x + self.thrust.x
-            self.y = self.y + self.thrust.y
+            self.x = self.x + self.walk.x
+            self.y = self.y + self.walk.y
 
             -- make sure the ship can't go off screen on x axis
             if self.x + self.radius < 0 then
