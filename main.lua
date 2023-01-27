@@ -64,6 +64,7 @@ function love.update(dt)
     mouse_x, mouse_y = love.mouse.getPosition()
 
     if game.state.running then
+        player:movePlayer()
 
     elseif game.state.menu then -- check if in menu state
         menu:run(clickedMouse) -- run the menu
