@@ -46,7 +46,7 @@ function Player(debugging)
 
         movePlayer = function (self)
             local FPS = love.timer.getFPS()
-            local friction = 0.7 -- 0 = no friction
+            local friction = 2 -- 0 = no friction
 
             -- basically turn 360 deg every second
             self.rotation = 360 / 180 * math.pi / FPS
