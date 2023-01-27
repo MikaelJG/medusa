@@ -76,7 +76,7 @@ function love.draw()
         -- draw player lives
         -- player:drawLives(game.state.paused)
         -- draw player in center of screen
-        player:draw
+        player:draw()
 
         -- end
         game:draw(game.state.paused)
