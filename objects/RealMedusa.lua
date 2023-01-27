@@ -34,8 +34,6 @@ function RealMedusa() -- takes in number of player lives
         draw = function (self)
             love.graphics.circle("fill", RealMedusa_x, RealMedusa_y, RealMedusa_radius)
             love.graphics.setColor(255/255, 135/255, 130/255)
---             love.graphics.circle("fill", snake_one_x, snake_one_y, snake_one_radius)
---             love.graphics.setColor(255/255, 135/255, 130/255)
         end,
 
         -- we draw player lives on screen

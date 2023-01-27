@@ -4,9 +4,9 @@ local love = require "love"
 
 function Target() -- takes in number of player lives
     target = {}
-    target_x = 150 
+    target_x = 250 
     target_y = 150 
-    target_radius = 15 
+    target_radius = 150 
 
     return {
         -- x = love.graphics.getWidth() / 2,

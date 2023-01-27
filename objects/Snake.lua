@@ -5,9 +5,9 @@ local RealMedusa = require "objects/RealMedusa"
 
 function Snake() -- takes in number of player lives
     snake = {}
-    snake_one_x = 60 -- RealMedusa_x + 60 
-    snake_one_y = 60 -- RealMedusa_y + 60 
-    snake_one_radius = 15 -- RealMedusa_radius - 25 
+    snake_one_x = 560 -- RealMedusa_x + 60 
+    snake_one_y = 260 -- RealMedusa_y + 60 
+    snake_one_radius = 150 -- RealMedusa_radius - 25 
 
     -- snake_one_y = 35 
     -- snake_one_radius = 35 

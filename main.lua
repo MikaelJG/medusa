@@ -87,12 +87,9 @@ function love.draw()
         -- draw player in center of screen
         target:draw(target)
         RealMedusa:draw(RealMedusa)
-        medusa:draw(medusa)
+        -- medusa:draw(medusa)
         snake:draw(snake)
 
-        -- draw ennemies or player
-        -- for _, asteroid in pairs(asteroids) do
-        --     asteroid:draw(game.state.paused)
         -- end
         game:draw(game.state.paused)
 
