@@ -2,10 +2,10 @@ local love = require "love"
 
 local Button = require "components/Button"
 
-function Menu(game, player)
+function Menu(game)
     local funcs = {
         newGame = function ()
-            game:startNewGame(player)
+            game:startNewGame()
         end,
         quitGame = function ()
             love.event.quit()

@@ -4,9 +4,9 @@ local love = require "love"
 
 function Medusa()
     medusa = {}
-    medusa_x = 200 
-    medusa_y = 200 
-    medusa_radius = 25 
+    medusa_x = 200
+    medusa_y = 200
+    medusa_radius = 25
     -- size of player and angle for example
     -- local SHIP_SIZE = 30
     -- local VIEW_ANGLE = math.rad(90)
@@ -24,6 +24,7 @@ function Medusa()
         draw = function (self)
             love.graphics.circle("fill", medusa_x, medusa_y, medusa_radius)
             love.graphics.setColor(115/255, 170/255, 15/255)
+            love.graphics.print("medusa", medusa_x, medusa_y)
         end,
 
         -- we draw player lives on screen
@@ -38,4 +39,4 @@ function Medusa()
     }
 end
 
-return Medusa 
+return Medusa

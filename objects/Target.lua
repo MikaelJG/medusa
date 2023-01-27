@@ -4,9 +4,9 @@ local love = require "love"
 
 function Target() -- takes in number of player lives
     target = {}
-    target_x = 250 
-    target_y = 150 
-    target_radius = 150 
+    target_x = 250
+    target_y = 150
+    target_radius = 150
 
     return {
         -- x = love.graphics.getWidth() / 2,
@@ -20,7 +20,8 @@ function Target() -- takes in number of player lives
 
         draw = function (self)
             love.graphics.circle("fill", target_x, target_y, target_radius)
-            love.graphics.setColor(255/255, 135/255, 130/255, 0)
+            love.graphics.setColor(255/255, 135/255, 130/255, 1)
+            love.graphics.print("target", target_x, target_y)
         end,
 
         -- we draw player lives on screen
@@ -35,4 +36,4 @@ function Target() -- takes in number of player lives
     }
 end
 
-return Target 
+return Target
