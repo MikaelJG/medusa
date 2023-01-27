@@ -47,6 +47,8 @@ function Player(debugging)
             love.graphics.circle("line", player.x + 20, player.y - 20, 8)
             love.graphics.setColor(100/255, 230/255, 5/255, 1)
             love.graphics.circle("line", player.x - 20, player.y + 20, 8)
+            love.graphics.setColor(100/255, 230/255, 5/255, 1)
+            love.graphics.circle("line", player.x - 20, player.y - 20, 8)
         end,
 
         movePlayer = function (self)
