@@ -18,6 +18,8 @@ function love.load()
     game = Game()
     player = Player()
     menu = Menu(game) -- Create a menu object
+    -- when the game starts insert an enemy in empty table ennemies
+    table.insert(enemies, 1, Enemy()) 
 end
 
 
@@ -69,7 +71,6 @@ function love.update(dt)
 
     if game.state.running then
         player:movePlayer()
-        table.insert(enemies, 1, Enemy()) 
         for i = 1, #enemies do 
             enemies[i]:move(player.x, player.y)
         end
