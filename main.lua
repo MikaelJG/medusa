@@ -4,11 +4,13 @@ require "globals"
 local love = require "love"
 
 local Player = require "objects/Player"
+local Enemy = require "objects/Enemy"
 local Game = require "states/Game" -- importing game object
 local Menu = require "states/Menu" -- importing menu object
 
 math.randomseed(os.time())
 
+local enemies = {}
 function love.load()
     love.mouse.setVisible(false)
     mouse_x, mouse_y = 0, 0
@@ -17,6 +19,7 @@ function love.load()
     player = Player()
     menu = Menu(game) -- Create a menu object
 end
+
 
 -- KEYBINDINGS [ START ]--
 function love.keypressed(key)
@@ -60,11 +63,16 @@ function love.mousepressed(x, y, button, istouch, presses)
 end
 -- KEYBINDINGS [ END ] --
 
+
 function love.update(dt)
     mouse_x, mouse_y = love.mouse.getPosition()
 
     if game.state.running then
         player:movePlayer()
+        table.insert(enemies, 1, Enemy()) 
+        for i = 1, #enemies do 
+            enemies[i]:move(player.x, player.y)
+        end
 
     elseif game.state.menu then -- check if in menu state
         menu:run(clickedMouse) -- run the menu
@@ -77,6 +85,9 @@ function love.draw()
         -- draw player lives
         -- player:drawLives(game.state.paused)
         -- draw player in center of screen
+        for i = 1, #enemies do 
+            enemies[i]:draw()
+        end
         player:draw()
 
         -- end
