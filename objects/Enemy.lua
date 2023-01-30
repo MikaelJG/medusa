@@ -3,7 +3,7 @@ local love = require "love"
 function Enemy()
     local dice = math.random(1, 4)
     local enemy_x, enemy_y
-    local _radius = 20
+    local _radius = 10
 
     if dice == 1 then -- come from above --
         enemy_x = math.random(_radius, love.graphics.getWidth())
@@ -20,7 +20,7 @@ function Enemy()
     end
 
     return {
-        level = 1,
+        level = 0.5,
         radius = _radius,
         x = enemy_x,
         y = enemy_y,
@@ -31,7 +31,7 @@ function Enemy()
             elseif player_x - self.x < 0 then
                 self.x = self.x - self.level
             end
-         
+
             if player_y - self.y > 0 then
                 self.y = self.y + self.level
             elseif player_y - self.y < 0 then
