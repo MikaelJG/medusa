@@ -35,6 +35,19 @@ function love.load()
 
   player.anim = player.animation.up
 
+  -- ATTACK
+  attack = {}
+  attack.spriteSheet = love.graphics.newImage("sprites/slash-effect-right.png")
+
+  attack.grid = anim8.newGrid(16, 16, attack.spriteSheet:getWidth(), attack.spriteSheet:getHeight())
+
+  attack.animation = {}
+
+  attack.animation.right = anim8.newAnimation(attack.grid('1-3', 1), 0.2)
+
+  attack.anim = attack.animation.right
+
+
     love.mouse.setVisible(false)
     mouse_x, mouse_y = 0, 0
 
@@ -105,6 +118,7 @@ function love.update(dt)
 
     -- Moving player and animation
     local isMoving = false
+    local isAttack = false
 
   if love.keyboard.isDown("right") then
       player.x = player.x + player.speed
@@ -130,6 +144,17 @@ function love.update(dt)
       isMoving = true
   end
 
+  -- Attack
+
+  if love.keyboard.isDown("space") then
+    attack.anim = attack.animation.right
+    isAttack = true
+  end
+
+  if isAttack == false then
+    attack.anim:gotoFrame(3)
+  end
+
   --through window
 
   --  make sure the ship can't go off screen on x axis
@@ -151,6 +176,7 @@ function love.update(dt)
   end
 
   player.anim:update(dt)
+  attack.anim:update(dt)
 end
 
 function love.draw()
@@ -162,6 +188,7 @@ function love.draw()
             enemies[i]:draw()
         end
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 2, 2)
+        attack.anim:draw(attack.spriteSheet, player.x, player.y, nil, 2, 2)
 
         -- end
         game:draw(game.state.paused)
