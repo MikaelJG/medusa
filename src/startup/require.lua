@@ -1,0 +1,4 @@
+function requireAll()
+    require
+
+end
