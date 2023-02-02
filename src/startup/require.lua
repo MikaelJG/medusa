@@ -15,7 +15,7 @@ function requireAll()
     -- require("src/utilities/triggers")
     -- require("src/utilities/utils")
 
-    require("src/player")
+    require("src/Player")
     -- require("src/update")
     -- require("src/draw")
 
@@ -26,7 +26,7 @@ function requireAll()
     -- require("src/effects/particles/particleEvent")
 
     -- require("src/enemies/projectile")
-    require("src/enemies/enemy")
+    require("src/enemies/Enemy")
 
     -- require("src/environment/tree")
     -- require("src/environment/water")

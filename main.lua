@@ -13,7 +13,7 @@ function love.load()
 
     -- a require stategy
     -- at gameStart, call a requireAll function in gameStart.lua
-    require ("src/startup")
+    require ("src/startup/gameStart")
     gameStart() 
         
     anim8 = require 'libraries/anim8'
