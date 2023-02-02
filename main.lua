@@ -1,12 +1,9 @@
--- use variables set in globals
-require "globals"
-
 local love = require "love"
 
 -- local Player = require "objects/Player"
-local Enemy = require "objects/Enemy"
-local Game = require "states/Game" -- importing game object
-local Menu = require "states/Menu" -- importing menu object
+local Enemy = require "src/enemy/Enemy"
+local Game = require "src/startup/Game" -- importing game object
+local Menu = require "src/startup/Menu" -- importing menu object
 
 math.randomseed(os.time())
 
