@@ -14,38 +14,43 @@ local enemies = {}
 
 function love.load()
 
-  anim8 = require 'libraries/anim8'
-  love.graphics.setDefaultFilter("nearest", "nearest")
+    -- a require stategy
+    -- at gameStart, call a requireAll function in gameStart.lua
+    require ("src/startup")
+    gameStart() 
+        
+    anim8 = require 'libraries/anim8'
+    love.graphics.setDefaultFilter("nearest", "nearest")
 
-  -- PLAYER
-  player = {}
-  player.x = 400
-  player.y = 200
-  player.radius = 2
-  player.speed = 1
+    -- PLAYER
+    player = {}
+    player.x = 400
+    player.y = 200
+    player.radius = 2
+    player.speed = 1
 
-  player.spriteSheet = love.graphics.newImage("sprites/player-sheet.png")
-  player.grid = anim8.newGrid(12, 18, player.spriteSheet:getWidth(), player.spriteSheet:getHeight())
+    player.spriteSheet = love.graphics.newImage("sprites/player-sheet.png")
+    player.grid = anim8.newGrid(12, 18, player.spriteSheet:getWidth(), player.spriteSheet:getHeight())
 
-  player.animation = {}
-  player.animation.down = anim8.newAnimation(player.grid('1-4', 1), 0.2)
-  player.animation.left = anim8.newAnimation(player.grid('1-4', 2), 0.2)
-  player.animation.right = anim8.newAnimation(player.grid('1-4', 3), 0.2)
-  player.animation.up = anim8.newAnimation(player.grid('1-4', 4), 0.2)
+    player.animation = {}
+    player.animation.down = anim8.newAnimation(player.grid('1-4', 1), 0.2)
+    player.animation.left = anim8.newAnimation(player.grid('1-4', 2), 0.2)
+    player.animation.right = anim8.newAnimation(player.grid('1-4', 3), 0.2)
+    player.animation.up = anim8.newAnimation(player.grid('1-4', 4), 0.2)
 
-  player.anim = player.animation.up
+    player.anim = player.animation.up
 
-  -- ATTACK
-  attack = {}
-  attack.spriteSheet = love.graphics.newImage("sprites/slash-effect-right.png")
+    -- ATTACK
+    attack = {}
+    attack.spriteSheet = love.graphics.newImage("sprites/slash-effect-right.png")
 
-  attack.grid = anim8.newGrid(16, 16, attack.spriteSheet:getWidth(), attack.spriteSheet:getHeight())
+    attack.grid = anim8.newGrid(16, 16, attack.spriteSheet:getWidth(), attack.spriteSheet:getHeight())
 
-  attack.animation = {}
+    attack.animation = {}
 
-  attack.animation.right = anim8.newAnimation(attack.grid('1-3', 1), 0.2)
+    attack.animation.right = anim8.newAnimation(attack.grid('1-3', 1), 0.2)
 
-  attack.anim = attack.animation.right
+    attack.anim = attack.animation.right
 
 
     love.mouse.setVisible(false)
