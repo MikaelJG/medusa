@@ -1,7 +1,5 @@
 local love = require "love"
 
--- local Player = require "objects/Player"
-local Enemy = require "src/enemy/Enemy"
 local Game = require "src/startup/Game" -- importing game object
 local Menu = require "src/startup/Menu" -- importing menu object
 
@@ -103,7 +101,6 @@ function love.mousepressed(x, y, button, istouch, presses)
 end
 -- KEYBINDINGS [ END ] --
 
-
 function love.update(dt)
     mouse_x, mouse_y = love.mouse.getPosition()
 
@@ -183,7 +180,6 @@ end
 
 function love.draw()
     if game.state.running or game.state.paused then
-        -- draw player lives
         -- player:drawLives(game.state.paused)
         -- draw player in center of screen
         for i = 1, #enemies do
