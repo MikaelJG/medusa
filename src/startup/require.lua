@@ -26,7 +26,7 @@ function requireAll()
     -- require("src/effects/particles/particleEvent")
 
     -- require("src/enemies/projectile")
-    require("src/enemies/Enemy")
+    require("src/enemy/Enemy")
 
     -- require("src/environment/tree")
     -- require("src/environment/water")
