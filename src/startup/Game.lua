@@ -51,13 +51,6 @@ function Game()
 
         startNewGame = function (self, medusa)
             self:changeGameState("running")
-        
-            -- ON START, spawn an enemy or player, like asteroids object here
-
-            -- asteroids = {}
-            -- local as_x = math.floor(math.random(love.graphics.getWidth()))
-            -- local as_y = math.floor(math.random(love.graphics.getHeight()))
-            -- table.insert(asteroids, 1, Asteroids(as_x, as_y, 100, self.level, true))
         end
     }
 end
