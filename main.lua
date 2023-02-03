@@ -9,7 +9,7 @@ function love.load()
     -- at gameStart, call a requireAll fun, in gameStart.lua
     require ("src/startup/gameStart")
     gameStart()
-    
+
     love.graphics.setDefaultFilter("nearest", "nearest")
 
     love.mouse.setVisible(false)
@@ -141,17 +141,26 @@ function love.update(dt)
 
   player.anim:update(dt)
   attack.anim:update(dt)
+  gameMap:update(dt)
 end
 
 function love.draw()
     if game.state.running or game.state.paused then
-        -- player:drawLives(game.state.paused)
-        -- draw player in center of screen
+
+        -- MAP
+        gameMap:draw()
+
+        -- ENEMIES
         for i = 1, #enemies do
             enemies[i]:draw()
         end
+
+        -- PLAYER
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 2, 2)
+
+        -- ATTACK
         attack.anim:draw(attack.spriteSheet, player.x, player.y, nil, 2, 2)
+
 
         -- end
         game:draw(game.state.paused)

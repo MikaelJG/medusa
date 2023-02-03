@@ -6,7 +6,7 @@ function requireAll()
     -- -- Load assets, resources, data
     -- require("src/startup/resources")
     -- require("src/startup/data")
-    -- 
+    --
     -- require("src/utilities/cam")
     -- require("src/utilities/destroyAll")
     -- require("src/utilities/misc")
@@ -14,6 +14,14 @@ function requireAll()
     -- require("src/utilities/shake")
     -- require("src/utilities/triggers")
     -- require("src/utilities/utils")
+
+    -- MAP
+    require("maps/gameMap")
+    require("libraries/sti")
+
+    -- PLAYER
+    -- ENEMY
+    -- ATTACK
 
     require("src/startup/Player")
     require("src/startup/Game")
@@ -44,7 +52,7 @@ function requireAll()
 
     -- require("src/spells/fireball")
     -- require("src/spells/flame")
-    -- 
+    --
     -- require("src/levels/curtain")
     -- require("src/levels/loadMap")
     -- require("src/levels/npc")
