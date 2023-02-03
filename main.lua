@@ -148,7 +148,8 @@ function love.draw()
     if game.state.running or game.state.paused then
 
         -- MAP
-        gameMap:draw()
+        -- Map:draw(tx, ty, sx, sy)
+        gameMap:draw(-100, -20, 2, 2)
 
         -- ENEMIES
         for i = 1, #enemies do
