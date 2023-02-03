@@ -8,8 +8,8 @@ function love.load()
 
     -- at gameStart, call a requireAll function in gameStart.lua | requireAll Strategy
     require ("src/startup/gameStart")
-    gameStart() 
-        
+    gameStart()
+
     anim8 = require 'libraries/anim8'
     love.graphics.setDefaultFilter("nearest", "nearest")
 
@@ -142,7 +142,8 @@ function love.update(dt)
   -- Attack
 
   if love.keyboard.isDown("space") then
-    attack.anim = attack.animation.right
+    attack.anim:gotoFrame(1)
+    attack.anim:update(dt)
     isAttack = true
   end
 
