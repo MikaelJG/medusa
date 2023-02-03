@@ -22,7 +22,7 @@ function requireAll()
     -- require("src/update")
     -- require("src/draw")
 
-    -- require("src/effects/blast")
+    require("src/effects/attack")
     -- require("src/effects/effect")
     -- require("src/effects/shadows")
     -- require("src/effects/particles/particle")
