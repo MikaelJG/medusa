@@ -15,7 +15,7 @@ function requireAll()
     -- require("src/utilities/triggers")
     -- require("src/utilities/utils")
 
-    require("src/Player")
+    require("src/startup/Player")
     require("src/startup/Game")
     require("src/startup/Menu")
     require("libraries/anim8")
