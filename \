@@ -162,20 +162,9 @@ function love.update(dt)
   -- to find how many tiles in map
   -- for tiled maps, not a simple background
   -- local mapWidth = gameMap.width * gameMap.tilewidth
-  -- local mapHeight = gameMap.height * gameMap.tileheight
 
   -- for simple background
   -- I THINK : local mapWidth = gameMap.width?
-
-  -- Right border
-  -- if cam.x > (mapWidth - width/2) then
-        -- cam.x = (mapWidth - width/2)
-  -- end
-
-  -- Bottom border
-  -- if cam.y > (mapHeight - height/2) then
-        -- cam.y = (mapHeight - height/2)
-  -- end
 end
 
 function love.draw()
@@ -224,8 +213,4 @@ function love.draw()
 
             love.graphics.print(love.timer.getFPS(), 10, 10)
         -- cam:detach()
-
-        -- draw something outside of cam:detach() to have it HUD
-        -- HUD (heads-up display)
-        -- love.graphics.print("hello", 10, 10)
 end
