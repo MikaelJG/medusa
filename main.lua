@@ -1,16 +1,12 @@
 local love = require "love"
 
-local Game = require "src/startup/Game" -- importing game object
-local Menu = require "src/startup/Menu" -- importing menu object
-
 math.randomseed(os.time())
 
 local enemies = {}
 
 function love.load()
 
-    -- a require stategy
-    -- at gameStart, call a requireAll function in gameStart.lua
+    -- at gameStart, call a requireAll function in gameStart.lua | requireAll Strategy
     require ("src/startup/gameStart")
     gameStart() 
         
