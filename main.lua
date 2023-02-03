@@ -6,7 +6,7 @@ local enemies = {}
 
 function love.load()
 
-    -- at gameStart, call a requireAll function in gameStart.lua | requireAll Strategy
+    -- at gameStart, call a requireAll fun, in gameStart.lua
     require ("src/startup/gameStart")
     gameStart() 
         
