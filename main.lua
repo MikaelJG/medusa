@@ -162,7 +162,6 @@ function love.draw()
         -- ATTACK
         attack.anim:draw(attack.spriteSheet, player.x, player.y, nil, 2, 2)
 
-
         -- end
         game:draw(game.state.paused)
 
