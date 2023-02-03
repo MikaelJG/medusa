@@ -149,7 +149,7 @@ function love.draw()
 
         -- MAP
         -- Map:draw(tx, ty, sx, sy)
-        gameMap:draw(80, 10, 2, 2)
+        gameMap:draw(80, 8, 2, 2)
 
         -- ENEMIES
         for i = 1, #enemies do
