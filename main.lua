@@ -175,46 +175,46 @@ end
   gameMap:update(dt)
 
   -- updates cam everyframe to follow player
-  -- cam:lootAt(player.x, player.y)
+  cam:lookAt(player.x, player.y)
 
   -- check width of the screen
-  -- local width = love.graphics.getWidth()
-  -- local height = love.graphics.getHeight()
+  local width = love.graphics.getWidth()
+  local height = love.graphics.getHeight()
 
-  -- if cam.x < width/2 then
-    -- cam.x = width/2
-  -- end
-  -- if cam.y < height/2 then
-    -- cam.y = height/2
-  -- end
+  if cam.x < width/2 then
+    cam.x = width/2
+  end
+  if cam.y < height/2 then
+    cam.y = height/2
+  end
 
   -- to find how many tiles in map
   -- for tiled maps, not a simple background
-  -- local mapWidth = gameMap.width * gameMap.tilewidth
-  -- local mapHeight = gameMap.height * gameMap.tileheight
+  local mapWidth = gameMap.width * gameMap.tilewidth
+  local mapHeight = gameMap.height * gameMap.tileheight
 
   -- for simple background
   -- I THINK : local mapWidth = gameMap.width?
 
   -- Right border
-  -- if cam.x > (mapWidth - width/2) then
-        -- cam.x = (mapWidth - width/2)
-  -- end
+  if cam.x > (mapWidth - width/2) then
+        cam.x = (mapWidth - width/2)
+  end
 
   -- Bottom border
-  -- if cam.y > (mapHeight - height/2) then
-        -- cam.y = (mapHeight - height/2)
-  -- end
+  if cam.y > (mapHeight - height/2) then
+        cam.y = (mapHeight - height/2)
+  end
 end
 
 function love.draw()
 
         -- attach the camera to everything on screen
-        -- cam:attach()
+        cam:attach()
 
         -- we need map layers for the camera to work
-        -- ex: gameMap:drawLayer(gameMap.layers["Calque de tuile 1"])
-        -- ex: gameMap:drawLayer(gameMap.layers["statue"])
+        gameMap:drawLayer(gameMap.layers["Calque de Tuiles 1"])
+        gameMap:drawLayer(gameMap.layers["statue"])
             if game.state.running or game.state.paused then
 
                 -- MAP
@@ -255,9 +255,19 @@ function love.draw()
             end
 
             love.graphics.print(love.timer.getFPS(), 10, 10)
-        -- cam:detach()
+        cam:detach()
 
         -- draw something outside of cam:detach() to have it HUD
         -- HUD (heads-up display)
-        -- love.graphics.print("hello", 10, 10)
+        love.graphics.print(love.graphics.getWidth(), 10, 10)
+        love.graphics.print(love.graphics.getHeight(), 10, 30)
+        -- love.graphics.print(love.graphics.getwidth(), 10, 10)
+        love.graphics.print(gameMap.width * gameMap.tilewidth, 60, 60)
+        love.graphics.print("gameMap.width * gameMap.tilewidth", 60, 60)
+        love.graphics.print(gameMap.height * gameMap.tilewidth, 60, 80)
+        love.graphics.print("gameMap.height * gameMap.tilewidth", 60, 80)
+        love.graphics.print(gameMap.height * gameMap.tilewidth, 60, 80)
+        love.graphics.print("gameMap.height * gameMap.tilewidth", 60, 80)
+        love.graphics.print(gameMap.height * gameMap.tilewidth, 60, 80)
+        love.graphics.print("gameMap.height * gameMap.tilewidth", 60, 80)
 end
