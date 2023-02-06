@@ -123,14 +123,14 @@ function love.update(dt)
 
   --through window
 
-  --  make sure the ship can't go off screen on x axis
+  --  Player can't go off screen on x axis
   if player.x + player.radius < 0 then
       player.x = love.graphics.getWidth() + player.radius
   elseif player.x - player.radius > love.graphics.getWidth() then
       player.x = -player.radius
   end
 
-  -- make sure the ship can't go off screen on y axis
+  -- The player can't go off screen on y axis
   if player.y + player.radius < 0 then
       player.y = love.graphics.getHeight() + player.radius
   elseif player.y - player.radius > love.graphics.getHeight() then
@@ -184,8 +184,8 @@ function love.draw()
         -- cam:attach()
 
         -- we need map layers for the camera to work
-        -- ex: gameMap:drawLayer(gameMap.layers["Ground"]) 
-        -- ex: gameMap:drawLayer(gameMap.layers["Tree"]) 
+        -- ex: gameMap:drawLayer(gameMap.layers["Calque de tuile 1"]) 
+        -- ex: gameMap:drawLayer(gameMap.layers["statue"]) 
             if game.state.running or game.state.paused then
 
                 -- MAP
