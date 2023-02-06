@@ -178,33 +178,33 @@ end
   cam:lookAt(player.x, player.y)
 
   -- check width of the screen
-  local width = love.graphics.getWidth()
-  local height = love.graphics.getHeight()
+  -- local width = love.graphics.getWidth()
+  -- local height = love.graphics.getHeight()
 
-  if cam.x < width/2 then
-    cam.x = width/2
-  end
-  if cam.y < height/2 then
-    cam.y = height/2
-  end
+  -- if cam.x < width/2 then
+  --   cam.x = width/2
+  -- end
+  -- if cam.y < height/2 then
+  --   cam.y = height/2
+  -- end
 
-  -- to find how many tiles in map
-  -- for tiled maps, not a simple background
-  local mapWidth = gameMap.width * gameMap.tilewidth
-  local mapHeight = gameMap.height * gameMap.tileheight
+  -- -- to find how many tiles in map
+  -- -- for tiled maps, not a simple background
+  -- local mapWidth = gameMap.width * gameMap.tilewidth
+  -- local mapHeight = gameMap.height * gameMap.tileheight
 
-  -- for simple background
-  -- I THINK : local mapWidth = gameMap.width?
+  -- -- for simple background
+  -- -- I THINK : local mapWidth = gameMap.width?
 
-  -- Right border
-  if cam.x > (mapWidth - width/2) then
-        cam.x = (mapWidth - width/2)
-  end
+  -- -- Right border
+  -- if cam.x > (mapWidth - width/2) then
+  --       cam.x = (mapWidth - width/2)
+  -- end
 
-  -- Bottom border
-  if cam.y > (mapHeight - height/2) then
-        cam.y = (mapHeight - height/2)
-  end
+  -- -- Bottom border
+  -- if cam.y > (mapHeight - height/2) then
+  --       cam.y = (mapHeight - height/2)
+  -- end
 end
 
 function love.draw()
@@ -213,13 +213,13 @@ function love.draw()
         cam:attach()
 
         -- we need map layers for the camera to work
-        gameMap:drawLayer(gameMap.layers["Calque de Tuiles 1"])
-        gameMap:drawLayer(gameMap.layers["statue"])
             if game.state.running or game.state.paused then
 
                 -- MAP
                 -- Map:draw(tx, ty, sx, sy)
-                gameMap:draw(80, 8, 2, 2)
+        --        gameMap:draw(80, 8, 2, 2)
+        gameMap:drawLayer(gameMap.layers["Calque de Tuiles 1"])
+        gameMap:drawLayer(gameMap.layers["statue"])
 
                 -- BAT
                 bat.anim:draw(bat.spriteSheet, bat.x, bat.y, nil, 2, 2)
@@ -255,6 +255,8 @@ function love.draw()
             end
 
             love.graphics.print(love.timer.getFPS(), 10, 10)
+
+
         cam:detach()
 
         -- draw something outside of cam:detach() to have it HUD
