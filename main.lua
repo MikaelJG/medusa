@@ -6,7 +6,8 @@ local enemies = {}
 
 function love.load()
     camera = require ("libraries/camera")
-    cam = camera()
+    -- in link, cam = Camera(0, 0, scale)
+    cam = camera(0, 0, 2)
 
     -- at gameStart, call a requireAll fun, in gameStart.lua
     require ("src/startup/gameStart")
@@ -193,17 +194,17 @@ end
   -- local mapWidth = gameMap.width * gameMap.tilewidth
   -- local mapHeight = gameMap.height * gameMap.tileheight
 
-  -- -- for simple background
-  -- -- I THINK : local mapWidth = gameMap.width?
+  -- -- -- for simple background
+  -- -- -- I THINK : local mapWidth = gameMap.width?
 
-  -- -- Right border
+  -- -- -- Right border
   -- if cam.x > (mapWidth - width/2) then
-  --       cam.x = (mapWidth - width/2)
+  --        cam.x = (mapWidth - width/2)
   -- end
 
-  -- -- Bottom border
+  -- -- -- Bottom border
   -- if cam.y > (mapHeight - height/2) then
-  --       cam.y = (mapHeight - height/2)
+  --        cam.y = (mapHeight - height/2)
   -- end
 end
 
@@ -217,9 +218,9 @@ function love.draw()
 
                 -- MAP
                 -- Map:draw(tx, ty, sx, sy)
-        --        gameMap:draw(80, 8, 2, 2)
-        gameMap:drawLayer(gameMap.layers["Calque de Tuiles 1"])
-        gameMap:drawLayer(gameMap.layers["statue"])
+                -- gameMap:draw(80, 8, 2, 2)
+        gameMap:drawLayer(gameMap.layers["Calque de Tuiles 1"], 0, 0, 0, 2, 2)
+        gameMap:drawLayer(gameMap.layers["statue"], 0, 0, 0, 2, 2)
 
                 -- BAT
                 bat.anim:draw(bat.spriteSheet, bat.x, bat.y, nil, 2, 2)
@@ -262,14 +263,16 @@ function love.draw()
         -- draw something outside of cam:detach() to have it HUD
         -- HUD (heads-up display)
         love.graphics.print(love.graphics.getWidth(), 10, 10)
+        love.graphics.print("love.graphics.getWidth()", 60, 10)
         love.graphics.print(love.graphics.getHeight(), 10, 30)
+        love.graphics.print("love.graphics.getHeight()", 60, 30)
         -- love.graphics.print(love.graphics.getwidth(), 10, 10)
         love.graphics.print(gameMap.width * gameMap.tilewidth, 60, 60)
-        love.graphics.print("gameMap.width * gameMap.tilewidth", 60, 60)
+        love.graphics.print("gameMap.width * gameMap.tilewidth", 100, 60)
         love.graphics.print(gameMap.height * gameMap.tilewidth, 60, 80)
-        love.graphics.print("gameMap.height * gameMap.tilewidth", 60, 80)
-        love.graphics.print(gameMap.height * gameMap.tilewidth, 60, 80)
-        love.graphics.print("gameMap.height * gameMap.tilewidth", 60, 80)
-        love.graphics.print(gameMap.height * gameMap.tilewidth, 60, 80)
-        love.graphics.print("gameMap.height * gameMap.tilewidth", 60, 80)
+        love.graphics.print("gameMap.height * gameMap.tilewidth", 100, 80)
+        -- love.graphics.print(gameMap.height * gameMap.tilewidth, 60, 80)
+        -- love.graphics.print("gameMap.height * gameMap.tilewidth", 60, 80)
+        -- love.graphics.print(gameMap.height * gameMap.tilewidth, 60, 80)
+        -- love.graphics.print("gameMap.height * gameMap.tilewidth", 60, 80)
 end
