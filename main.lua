@@ -219,8 +219,8 @@ function love.draw()
                 -- MAP
                 -- Map:draw(tx, ty, sx, sy)
                 -- gameMap:draw(80, 8, 2, 2)
-        gameMap:drawLayer(gameMap.layers["Calque de Tuiles 1"], 0, 0, 0, 2, 2)
-        gameMap:drawLayer(gameMap.layers["statue"], 0, 0, 0, 2, 2)
+        gameMap:drawLayer(gameMap.layers["Calque de Tuiles 1"])
+        gameMap:drawLayer(gameMap.layers["statue"])
 
                 -- BAT
                 bat.anim:draw(bat.spriteSheet, bat.x, bat.y, nil, 2, 2)
@@ -237,7 +237,7 @@ function love.draw()
                 -- oy = half sprite height
 
                 -- EX:  player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, 9)
-                player.anim:draw(player.spriteSheet, player.x, player.y, nil, 2, 2)
+                player.anim:draw(player.spriteSheet, player.x, player.y, nil, 1, 1)
 
                 -- ATTACK
                 attack.anim:draw(attack.spriteSheet, player.x, player.y, nil, 2, 2)

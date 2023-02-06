@@ -29,8 +29,8 @@ return {
       tilerendersize = "tile",
       fillmode = "stretch",
       tileoffset = {
-        x = 0,
-        y = 0
+        x = 400,
+        y = 400
       },
       grid = {
         orientation = "orthogonal",
