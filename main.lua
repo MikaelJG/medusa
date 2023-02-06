@@ -237,7 +237,7 @@ function love.draw()
                 -- oy = half sprite height
 
                 -- EX:  player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, 9)
-                player.anim:draw(player.spriteSheet, player.x, player.y, nil, 1, 1)
+                player.anim:draw(player.spriteSheet, player.x, player.y, nil, 1.3, 1.3)
 
                 -- ATTACK
                 attack.anim:draw(attack.spriteSheet, player.x, player.y, nil, 2, 2)
