@@ -15,29 +15,34 @@ function requireAll()
     -- require("src/utilities/triggers")
     -- require("src/utilities/utils")
 
+    -- GAME SETTINGS
+    require("src/startup/Game")
+    require("src/startup/Menu")
+    require("libraries/anim8")
+
     -- MAP
     require("maps/gameMap")
     require("libraries/sti")
 
     -- PLAYER
-    -- ENEMY
-    -- ATTACK
-
     require("src/startup/Player")
-    require("src/startup/Game")
-    require("src/startup/Menu")
-    require("libraries/anim8")
+
+    -- ENEMY
+    require("src/enemy/Enemy")
+    require("src/enemy/Bat")
+
+    -- ATTACK
+    require("src/effects/attack")
+
     -- require("src/update")
     -- require("src/draw")
 
-    require("src/effects/attack")
     -- require("src/effects/effect")
     -- require("src/effects/shadows")
     -- require("src/effects/particles/particle")
     -- require("src/effects/particles/particleEvent")
 
     -- require("src/enemies/projectile")
-    require("src/enemy/Enemy")
 
     -- require("src/environment/tree")
     -- require("src/environment/water")

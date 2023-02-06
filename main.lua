@@ -6,7 +6,7 @@ local enemies = {}
 
 function love.load()
     camera = require ("libraries/camera")
-    cam = camera() 
+    cam = camera()
 
     -- at gameStart, call a requireAll fun, in gameStart.lua
     require ("src/startup/gameStart")
@@ -141,8 +141,37 @@ function love.update(dt)
     player.anim:gotoFrame(2)
   end
 
+  -- bat move
+if bat.x < player.x then
+  bat.x = bat.x + 0.3
+end
+
+if bat.y < player.y then
+  bat.y = bat.y + 0.3
+end
+
+if bat.x > player.x then
+  bat.x = bat.x - 0.3
+end
+
+if bat.y > player.y then
+  bat.y = bat.y - 0.3
+end
+
+-- knock back
+if bat.x < player.x + 10 and bat.x > player.x - 10 and bat.y < player.y + 10 and bat.y > player.y - 10 then
+  if love.keyboard.isDown("space") then
+    bat.x = player.x - 25
+    bat.y = player.y - 25
+    bat.spriteSheet = love.graphics.newImage("sprites/bat-spritesheet2.png")
+  end
+else
+  bat.spriteSheet = love.graphics.newImage("sprites/bat-spritesheet.png")
+end
+
   player.anim:update(dt)
   attack.anim:update(dt)
+  bat.anim:update(dt)
   gameMap:update(dt)
 
   -- updates cam everyframe to follow player
@@ -184,26 +213,29 @@ function love.draw()
         -- cam:attach()
 
         -- we need map layers for the camera to work
-        -- ex: gameMap:drawLayer(gameMap.layers["Ground"]) 
-        -- ex: gameMap:drawLayer(gameMap.layers["Tree"]) 
+        -- ex: gameMap:drawLayer(gameMap.layers["Ground"])
+        -- ex: gameMap:drawLayer(gameMap.layers["Tree"])
             if game.state.running or game.state.paused then
 
                 -- MAP
                 -- Map:draw(tx, ty, sx, sy)
                 gameMap:draw(80, 8, 2, 2)
 
+                -- BAT
+                bat.anim:draw(bat.spriteSheet, bat.x, bat.y, nil, 2, 2)
+
                 -- ENEMIES
-                for i = 1, #enemies do
-                    enemies[i]:draw()
-                end
+                -- for i = 1, #enemies do
+                --     enemies[i]:draw()
+                -- end
 
                 -- PLAYER
                 -- for cam update offset variables (ox, oy)
                 -- love.graphics.draw( drawable, x, y, r, sx, sy, ox, oy, kx, ky)
                 -- ox = half sprite width
-                -- oy = half sprite height 
+                -- oy = half sprite height
 
-                -- EX:  player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, 9) 
+                -- EX:  player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, 9)
                 player.anim:draw(player.spriteSheet, player.x, player.y, nil, 2, 2)
 
                 -- ATTACK
