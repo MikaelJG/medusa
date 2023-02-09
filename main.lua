@@ -117,6 +117,7 @@ function love.update(dt)
   -- Attack
 
   if love.keyboard.isDown("space") then
+    -- getRadianRotation(player.dir)
     attack.anim:gotoFrame(1)
     attack.anim:update(dt)
     isAttack = true
@@ -245,7 +246,9 @@ function love.draw()
                 player.anim:draw(player.spriteSheet, player.x, player.y, nil, 1.3, 1.3)
 
                 -- ATTACK
-                attack.anim:draw(attack.spriteSheet, player.x, player.y, nil, 2, 2)
+                -- attack.anim:draw(attack.spriteSheet, player.x, player.y, rotation,scaling?, scaling?)
+                attack.anim:draw(attack.spriteSheet, player.x, player.y, getRadianRotation(player.dir) , 2, 2)
+                --love.graphics.print(getRadianRotation(player.dir), 10, 60)
 
                 -- end
                 game:draw(game.state.paused)
@@ -262,6 +265,7 @@ function love.draw()
 
             love.graphics.print(love.timer.getFPS(), 10, 10)
             love.graphics.print(player.dir, 10, 30)
+            love.graphics.print(getRadianRotation(player.dir), 10, 60)
 
         cam:detach()
 
