@@ -13,7 +13,7 @@ function requireAll()
     -- require("src/utilities/shaders")
     -- require("src/utilities/shake")
     -- require("src/utilities/triggers")
-    -- require("src/utilities/utils")
+    require("src/utilities/utils")
 
     -- GAME SETTINGS
     require("src/startup/Game")

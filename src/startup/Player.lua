@@ -5,6 +5,7 @@
     player = {}
     player.x = 400
     player.y = 200
+    player.dir = "down"
     player.radius = 2
     player.speed = 1
 

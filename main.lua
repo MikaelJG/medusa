@@ -87,24 +87,28 @@ function love.update(dt)
     local isAttack = false
 
   if love.keyboard.isDown("right") then
+      player.dir = "right"
       player.x = player.x + player.speed
       player.anim = player.animation.right
       isMoving = true
   end
 
   if love.keyboard.isDown("left") then
+      player.dir = "left"
       player.x = player.x - player.speed
       player.anim = player.animation.left
       isMoving = true
   end
 
   if love.keyboard.isDown("down") then
+      player.dir = "down"
       player.y = player.y + player.speed
       player.anim = player.animation.down
       isMoving = true
   end
 
   if love.keyboard.isDown("up") then
+      player.dir = "up"
       player.y = player.y - player.speed
       player.anim = player.animation.up
       isMoving = true
@@ -206,6 +210,7 @@ end
   -- if cam.y > (mapHeight - height/2) then
   --        cam.y = (mapHeight - height/2)
   -- end
+  rotation = getRotationFromDir(direction)
 end
 
 function love.draw()
@@ -256,23 +261,10 @@ function love.draw()
             end
 
             love.graphics.print(love.timer.getFPS(), 10, 10)
-
+            love.graphics.print(player.dir, 10, 30)
 
         cam:detach()
 
         -- draw something outside of cam:detach() to have it HUD
         -- HUD (heads-up display)
-        love.graphics.print(love.graphics.getWidth(), 10, 10)
-        love.graphics.print("love.graphics.getWidth()", 60, 10)
-        love.graphics.print(love.graphics.getHeight(), 10, 30)
-        love.graphics.print("love.graphics.getHeight()", 60, 30)
-        -- love.graphics.print(love.graphics.getwidth(), 10, 10)
-        love.graphics.print(gameMap.width * gameMap.tilewidth, 60, 60)
-        love.graphics.print("gameMap.width * gameMap.tilewidth", 100, 60)
-        love.graphics.print(gameMap.height * gameMap.tilewidth, 60, 80)
-        love.graphics.print("gameMap.height * gameMap.tilewidth", 100, 80)
-        -- love.graphics.print(gameMap.height * gameMap.tilewidth, 60, 80)
-        -- love.graphics.print("gameMap.height * gameMap.tilewidth", 60, 80)
-        -- love.graphics.print(gameMap.height * gameMap.tilewidth, 60, 80)
-        -- love.graphics.print("gameMap.height * gameMap.tilewidth", 60, 80)
 end
