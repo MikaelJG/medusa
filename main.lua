@@ -233,8 +233,8 @@ function love.draw()
                 -- MAP
                 -- Map:draw(tx, ty, sx, sy)
                 -- gameMap:draw(80, 8, 2, 2)
-        gameMap:drawLayer(gameMap.layers["Calque de Tuiles 1"])
-        gameMap:drawLayer(gameMap.layers["statue"])
+        gameMap:drawLayer(gameMap.layers["Ground"])
+        gameMap:drawLayer(gameMap.layers["Trees"])
 
                 -- BAT
                 bat.anim:draw(bat.spriteSheet, bat.x, bat.y, nil, 2, 2)
