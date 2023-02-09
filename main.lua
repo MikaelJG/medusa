@@ -5,6 +5,14 @@ math.randomseed(os.time())
 local enemies = {}
 
 function love.load()
+    -- SOUNDS
+    sounds = {}
+    sounds.blip = love.audio.newSource("sounds/blip.wav", "static")
+    sounds.music = love.audio.newSource("sounds/music.mp3", "stream")
+    sounds.music:setLooping(true)
+
+    sounds.music:play()
+
     camera = require ("libraries/camera")
     -- in link, cam = Camera(0, 0, scale)
     cam = camera(0, 0, 2)
