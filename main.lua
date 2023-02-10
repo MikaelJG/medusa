@@ -139,22 +139,6 @@ function love.update(dt)
     attack.anim:gotoFrame(3)
   end
 
-  --through window
-
-  --  Player can't go off screen on x axis
-  if player.x + player.radius < 0 then
-      player.x = love.graphics.getWidth() + player.radius
-  elseif player.x - player.radius > love.graphics.getWidth() then
-      player.x = -player.radius
-  end
-
-  -- The player can't go off screen on y axis
-  if player.y + player.radius < 0 then
-      player.y = love.graphics.getHeight() + player.radius
-  elseif player.y - player.radius > love.graphics.getHeight() then
-      player.y = -player.radius
-  end
-
   if isMoving == false then
     player.anim:gotoFrame(2)
   end
