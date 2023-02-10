@@ -114,13 +114,13 @@ function love.update(dt)
 
   if love.keyboard.isDown("space") then
     -- getRadianRotation(player.dir)
-    attack.anim:gotoFrame(1)
+    -- attack.anim:gotoFrame(1)
     attack.anim:update(dt)
     isAttack = true
   end
 
   if isAttack == false then
-    attack.anim:gotoFrame(3)
+    attack.anim:gotoFrame(4)
   end
 
   if isMoving == false then
