@@ -15,7 +15,7 @@ function love.load()
 
     camera = require ("libraries/camera")
     -- in link, cam = Camera(0, 0, scale)
-    cam = camera(0, 0, 2)
+    cam = camera()
 
     -- at gameStart, call a requireAll fun, in gameStart.lua
     require ("src/startup/gameStart")
