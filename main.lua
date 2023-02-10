@@ -207,7 +207,6 @@ function love.draw()
                 end
 
                 for i = 1, #bats do
-                  love.graphics.setColor(255, 0, 0)
                   love.graphics.rectangle("fill", bats[i].x, bats[i].y - 20, bats[i].life, 2)
                   -- love.graphics.print(bats[i].life, bats[i].x, bats[i].y - 20)
                 end
