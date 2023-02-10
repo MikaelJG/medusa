@@ -36,7 +36,7 @@ function Menu(game)
                 end
             end
             if love.keyboard.isDown("down") then
-                button = buttons[menu.count]
+                button = buttons[1]
                 button:setTextColor(0.8, 0.2, 0.2)
                 -- if count < 3 then
                 --    count = count + 1
