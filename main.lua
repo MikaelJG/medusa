@@ -186,12 +186,9 @@ end
 
 function love.draw()
 
-        -- attach the camera to everything on screen
-        cam:attach()
-
-        -- we need map layers for the camera to work
             if game.state.running or game.state.paused then
 
+            cam:attach()
                 -- MAP
                 -- Map:draw(tx, ty, sx, sy)
                 -- gameMap:draw(80, 8, 2, 2)
@@ -222,6 +219,7 @@ function love.draw()
 
                 -- end
                 game:draw(game.state.paused)
+            cam:detach() -- for HUD, print under detach()
 
             elseif game.state.menu then -- draw menu if in menu state
                 menu:draw()
@@ -238,9 +236,4 @@ function love.draw()
             love.graphics.print(player.dir, 10, 30)
             love.graphics.print(getRadianRotation(player.dir), 10, 60)
             love.graphics.printf(text, 0, 10, love.graphics.getWidth(), "center")
-
-        cam:detach()
-
-        -- draw something outside of cam:detach() to have it HUD
-        -- HUD (heads-up display)
 end

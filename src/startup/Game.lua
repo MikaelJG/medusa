@@ -1,9 +1,6 @@
 local love = require "love"
 local Text = require "../components/Text"
 
--- require Ennemi object or Player Object
--- local Asteroids = require "../objects/Asteroids"
-
 function Game()
     return {
         level = 1,
