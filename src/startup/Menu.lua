@@ -35,6 +35,10 @@ function Menu(game)
                     button:setTextColor(1, 1, 1)
                 end
             end
+            if love.keyboard.isDown("return") then
+                     button = buttons[1]
+                     button:click()
+            end
         end,
 
         draw = function (self)
