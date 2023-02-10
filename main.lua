@@ -229,6 +229,12 @@ function love.draw()
                 -- end
                 game:draw(game.state.paused)
             cam:detach() -- for HUD, print under detach()
+            -- COMMAND INFOS
+            love.graphics.setColor(0, 0, 0, 0.5)
+            love.graphics.rectangle("fill", 0, 0, love.graphics.getWidth(), 35) -- x, y, width, height
+            love.graphics.setColor(255, 255, 255)
+            love.graphics.printf(text, 0, 10, love.graphics.getWidth(), "center")
+            love.graphics.print("Life: " .. player.life, 10, 10)
 
             elseif game.state.menu then -- draw menu if in menu state
                 menu:draw()
@@ -240,10 +246,4 @@ function love.draw()
                 love.graphics.circle("fill", mouse_x, mouse_y, 10)
             end
 
-            -- COMMAND INFOS
-            love.graphics.setColor(0, 0, 0, 0.5)
-            love.graphics.rectangle("fill", 0, 0, love.graphics.getWidth(), 35) -- x, y, width, height
-            love.graphics.setColor(255, 255, 255)
-            love.graphics.printf(text, 0, 10, love.graphics.getWidth(), "center")
-            love.graphics.print("Life: " .. player.life, 10, 10)
 end
