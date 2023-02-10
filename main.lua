@@ -204,6 +204,7 @@ function love.draw()
                 -- gameMap:draw(80, 8, 2, 2)
                 gameMap:drawLayer(gameMap.layers["Ground"])
                 gameMap:drawLayer(gameMap.layers["Trees"])
+                gameMap:drawLayer(gameMap.layers["infos"])
 
                 -- BAT
                 for i = 1, #bats do
