@@ -135,21 +135,23 @@ function love.update(dt)
     player.anim:gotoFrame(2)
   end
 
-  -- bat move
-if bat.x < player.x then
-  bat.x = bat.x + 0.3
-end
+ -- bat move
+ for i = 1, #bats do
+  if bats[i].x < player.x then
+    bats[i].x = bats[i].x + 0.3
+  end
 
-if bat.y < player.y then
-  bat.y = bat.y + 0.3
-end
+  if bats[i].y < player.y then
+    bats[i].y = bats[i].y + 0.3
+  end
 
-if bat.x > player.x then
-  bat.x = bat.x - 0.3
-end
+  if bats[i].x > player.x then
+    bats[i].x = bats[i].x - 0.3
+  end
 
-if bat.y > player.y then
-  bat.y = bat.y - 0.3
+  if bats[i].y > player.y then
+    bats[i].y = bats[i].y - 0.3
+  end
 end
 
 -- knock back
@@ -216,7 +218,7 @@ function love.draw()
                 attack.anim:draw(attack.spriteSheet, player.x, player.y, getRadianRotation(player.dir) , 2, 2)
 
                 -- COLLIDER
-                world:draw()
+                -- world:draw()
 
                 -- end
                 game:draw(game.state.paused)

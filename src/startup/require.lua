@@ -24,4 +24,7 @@ function requireAll()
     -- ATTACK
     require("src/effects/attack")
 
+    -- LEVELS
+    require("src/levels/wall")
+
 end
