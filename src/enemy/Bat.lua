@@ -7,6 +7,7 @@ for i = 1, 10 do
   bat = {}
   bat.x = love.math.random(0, 800)
   bat.y = love.math.random(0, 800)
+  bat.life = 10
   bat.speed = 100
   bat.alive = true
   -- bat.collider = world:newBSGRectangleCollider(bat.x, bat.y, 22, 33, 20) -- (x, y, width, height, mass)
@@ -18,5 +19,6 @@ for i = 1, 10 do
   bat.animation.right = anim8.newAnimation(bat.grid('1-4', 1), 0.2)
 
   bat.anim = bat.animation.right
+
   table.insert(bats, i, bat)
 end

@@ -148,22 +148,25 @@ end
 
 -- knock back
 for i = 1, #bats do
-  local bat = bats[i]
-    if bat.x < player.x + 35 and bat.x > player.x - 35 and bat.y < player.y + 35 and bat.y > player.y - 35 then
+    if bats[i].x < player.x + 35 and bats[i].x > player.x - 35 and bats[i].y < player.y + 35 and bats[i].y > player.y - 35 then
       if love.keyboard.isDown("space") then
         if player.dir == "left" then
-          bat.x = bat.x - 100
+          bats[i].x = bats[i].x - 100
+          bats[i].life = bats[i].life - 1
         elseif player.dir == "down" then
-          bat.y = player.y + 100
+          bats[i].y = player.y + 100
+          bats[i].life = bats[i].life - 1
         elseif player.dir == "up" then
-          bat.y = player.y - 100
+          bats[i].y = player.y - 100
+          bats[i].life = bats[i].life - 1
         elseif player.dir == "right" then
-          bat.x = bat.x + 100
+          bats[i].x = bats[i].x + 100
+          bats[i].life = bats[i].life - 1
         end
         attack.anim:draw(attack.spriteSheet, player.x + 30, player.y, getRadianRotation(player.dir), 2, 2)
       end
     else
-      bat.spriteSheet = love.graphics.newImage("sprites/bat-spritesheet.png")
+      bats[i].spriteSheet = love.graphics.newImage("sprites/bat-spritesheet.png")
     end
 end
 
@@ -201,6 +204,12 @@ function love.draw()
                 -- BAT
                 for i = 1, #bats do
                   bats[i].anim:draw(bats[i].spriteSheet, bats[i].x, bats[i].y, nil, 2, 2)
+                end
+
+                for i = 1, #bats do
+                  love.graphics.setColor(255, 0, 0)
+                  love.graphics.rectangle("fill", bats[i].x, bats[i].y - 20, bats[i].life, 2)
+                  -- love.graphics.print(bats[i].life, bats[i].x, bats[i].y - 20)
                 end
 
                 -- PLAYER
