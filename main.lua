@@ -12,10 +12,9 @@ function love.load()
     -- SOUNDS
     sounds = {}
     sounds.blip = love.audio.newSource("sounds/blip.wav", "static")
-    sounds.music = love.audio.newSource("sounds/neurotica.mp3", "stream")
+    sounds.music = love.audio.newSource("sounds/music.mp3", "stream")
     sounds.music:setLooping(true)
 
-    sounds.music:play()
 
     --CAMERA
     camera = require ("libraries/camera")
@@ -196,6 +195,7 @@ end
 function love.draw()
 
             if game.state.running or game.state.paused then
+                sounds.music:play()
 
             cam:attach()
                 -- MAP
