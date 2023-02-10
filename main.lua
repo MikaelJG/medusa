@@ -128,21 +128,25 @@ function love.update(dt)
   end
 
  -- bat move
- for i = 1, #bats do
-  if bats[i].x < player.x then
-    bats[i].x = bats[i].x + 0.3
-  end
+ for i = #bats, 1, -1 do
+  if bats[i].life <= 0 then
+    table.remove(bats, i)
+  else
+    if bats[i].x < player.x then
+      bats[i].x = bats[i].x + 0.3
+    end
 
-  if bats[i].y < player.y then
-    bats[i].y = bats[i].y + 0.3
-  end
+    if bats[i].y < player.y then
+      bats[i].y = bats[i].y + 0.3
+    end
 
-  if bats[i].x > player.x then
-    bats[i].x = bats[i].x - 0.3
-  end
+    if bats[i].x > player.x then
+      bats[i].x = bats[i].x - 0.3
+    end
 
-  if bats[i].y > player.y then
-    bats[i].y = bats[i].y - 0.3
+    if bats[i].y > player.y then
+      bats[i].y = bats[i].y - 0.3
+    end
   end
 end
 
@@ -257,6 +261,7 @@ function love.draw()
                 love.graphics.setColor(255, 255, 255)
                 love.graphics.printf(text, 0, 10, love.graphics.getWidth(), "center")
                 love.graphics.print("Life: " .. player.life, 10, 10)
+                love.graphics.print("Bat: " .. #bats, love.graphics.getWidth() - 100, 10)
             end
 
 end
