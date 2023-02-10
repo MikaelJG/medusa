@@ -35,6 +35,13 @@ function Menu(game)
                     button:setTextColor(1, 1, 1)
                 end
             end
+            if love.keyboard.isDown("down") then
+                button = buttons[menu.count]
+                button:setTextColor(0.8, 0.2, 0.2)
+                -- if count < 3 then
+                --    count = count + 1
+                -- end
+            end
             if love.keyboard.isDown("return") then
                      button = buttons[1]
                      button:click()
