@@ -153,15 +153,26 @@ function love.update(dt)
 end
 
 -- knock back
-if bat.x < player.x + 10 and bat.x > player.x - 10 and bat.y < player.y + 10 and bat.y > player.y - 10 then
-  if love.keyboard.isDown("space") then
-    bat.x = player.x - 25
-    bat.y = player.y - 25
-    bat.spriteSheet = love.graphics.newImage("sprites/bat-spritesheet2.png")
-  end
-else
-  bat.spriteSheet = love.graphics.newImage("sprites/bat-spritesheet.png")
+for i = 1, #bats do
+  local bat = bats[i]
+    if bat.x < player.x + 35 and bat.x > player.x - 35 and bat.y < player.y + 35 and bat.y > player.y - 35 then
+      if love.keyboard.isDown("space") then
+        if player.dir == "left" then
+          bat.x = bat.x - 100
+        elseif player.dir == "down" then
+          bat.y = player.y + 100
+        elseif player.dir == "up" then
+          bat.y = player.y - 100
+        elseif player.dir == "right" then
+          bat.x = bat.x + 100
+        end
+        attack.anim:draw(attack.spriteSheet, player.x + 30, player.y, getRadianRotation(player.dir), 2, 2)
+      end
+    else
+      bat.spriteSheet = love.graphics.newImage("sprites/bat-spritesheet.png")
+    end
 end
+
 
 -- UPDATE
   gameMap:update(dt)

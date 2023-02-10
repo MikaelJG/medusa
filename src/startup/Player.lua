@@ -13,8 +13,8 @@
     player.collider = world:newBSGRectangleCollider(400, 200, 22, 33, 20) -- (x, y, width, height, mass)
     player.collider:setFixedRotation(true)
     player.dir = "up"
-    player.radius = 10 
-    player.life = 10 
+    player.radius = 10
+    player.life = 10
     player.speed = 200
 
     player.spriteSheet = love.graphics.newImage("sprites/player-sheet.png")
