@@ -30,8 +30,6 @@ function love.load()
     require ("src/startup/gameStart")
     gameStart()
 
-    -- love.graphics.setDefaultFilter("nearest", "nearest")
-
     love.mouse.setVisible(false)
     mouse_x, mouse_y = 0, 0
 
