@@ -5,6 +5,10 @@ math.randomseed(os.time())
 local enemies = {}
 
 function love.load()
+
+    -- COMMAND INFOS
+    text = " f = fullscreen, q = quit, space = attack, arrow keys = move "
+
     -- SOUNDS
     sounds = {}
     sounds.blip = love.audio.newSource("sounds/blip.wav", "static")
@@ -273,6 +277,9 @@ function love.draw()
             love.graphics.print(love.timer.getFPS(), 10, 10)
             love.graphics.print(player.dir, 10, 30)
             love.graphics.print(getRadianRotation(player.dir), 10, 60)
+            
+            -- COMMAND INFOS
+            love.graphics.printf(text, 0, 10, love.graphics.getWidth(), "center")
 
         cam:detach()
 
