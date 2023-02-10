@@ -184,7 +184,6 @@ end
   -- updates cam everyframe to follow player
   cam:lookAt(player.x, player.y)
 
-  rotation = getRotationFromDir(direction)
 end
 
 function love.draw()
