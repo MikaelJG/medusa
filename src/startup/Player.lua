@@ -1,5 +1,6 @@
     -- ANIMATION LIBRARY
     anim8 = require 'libraries/anim8'
+    love.graphics.setDefaultFilter("nearest", "nearest")
 
     -- COLLIDER LIBRARY
     wf = require 'libraries/windfield'
@@ -12,7 +13,8 @@
     player.collider = world:newBSGRectangleCollider(400, 200, 22, 33, 20) -- (x, y, width, height, mass)
     player.collider:setFixedRotation(true)
     player.dir = "up"
-    player.radius = 2
+    player.radius = 10 
+    player.life = 10 
     player.speed = 200
 
     player.spriteSheet = love.graphics.newImage("sprites/player-sheet.png")
