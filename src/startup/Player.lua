@@ -1,13 +1,19 @@
-
+    -- ANIMATION LIBRARY
     anim8 = require 'libraries/anim8'
+
+    -- COLLIDER LIBRARY
+    wf = require 'libraries/windfield'
+    world = wf.newWorld(0, 0)
 
     -- PLAYER
     player = {}
     player.x = 400
     player.y = 200
-    player.dir = "down"
+    player.collider = world:newBSGRectangleCollider(400, 200, 22, 33, 20) -- (x, y, width, height, mass)
+    player.collider:setFixedRotation(true)
+    player.dir = "up"
     player.radius = 2
-    player.speed = 1
+    player.speed = 200
 
     player.spriteSheet = love.graphics.newImage("sprites/player-sheet.png")
     player.grid = anim8.newGrid(12, 18, player.spriteSheet:getWidth(), player.spriteSheet:getHeight())

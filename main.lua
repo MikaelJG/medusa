@@ -17,9 +17,14 @@ function love.load()
 
     sounds.music:play()
 
+    --CAMERA
     camera = require ("libraries/camera")
     -- in link, cam = Camera(0, 0, scale)
     cam = camera()
+
+    -- COLLIDER
+    -- wf = require 'libraries/windfield'
+    -- world = wf.newWorld(0, 0)
 
     -- at gameStart, call a requireAll fun, in gameStart.lua
     require ("src/startup/gameStart")
@@ -41,16 +46,6 @@ end
 -- KEYBINDINGS [ START ]--
 function love.keypressed(key)
     if game.state.running then
-        if key == "w" or key == "up" then -- for number pad keys (then keys keyboards)  or key == "kp8" then
-            -- medusa action on up key
-            player.walking = true
-        end
-
-        if key == "space" or key == "down" then -- for numero pad keys (ten keys keyboards) or key == "kp5" then
-            -- medusa action on space key
-            -- medusa:shootLazer()
-        end
-
         if key == "escape" then
             game:changeGameState("paused")
         end
@@ -61,23 +56,12 @@ function love.keypressed(key)
     end
 end
 
-function love.keyreleased(key)
-    if key == "w" or key == "up" then -- or key == "kp8"
-        -- player no action when key released
-        player.walking = false
+function love.mousepressed(x, y, button, istouch, presses)
+    if button == 1 then
+      clickedMouse = true -- set if mouse is clicked
     end
 end
 
-function love.mousepressed(x, y, button, istouch, presses)
-    if button == 1 then
-        if game.state.running then
-            -- player action when game is running
-            -- player:shootLazer()
-        else
-            clickedMouse = true -- set if mouse is clicked
-        end
-    end
-end
 -- KEYBINDINGS [ END ] --
 
 function love.update(dt)
@@ -98,33 +82,41 @@ function love.update(dt)
     local isMoving = false
     local isAttack = false
 
+    -- PLAYER MOVE
+
+     -- velocity
+    local velocityX = 0
+    local velocityY = 0
+
   if love.keyboard.isDown("right") then
-      player.dir = "right"
-      player.x = player.x + player.speed
-      player.anim = player.animation.right
-      isMoving = true
+    velocityX = player.speed
+    player.anim = player.animation.right
+    isMoving = true
+    player.dir = "right"
   end
 
   if love.keyboard.isDown("left") then
-      player.dir = "left"
-      player.x = player.x - player.speed
-      player.anim = player.animation.left
-      isMoving = true
+    velocityX = -player.speed
+    player.anim = player.animation.left
+    isMoving = true
+    player.dir = "left"
   end
 
   if love.keyboard.isDown("down") then
-      player.dir = "down"
-      player.y = player.y + player.speed
-      player.anim = player.animation.down
-      isMoving = true
+    velocityY = player.speed
+    player.anim = player.animation.down
+    isMoving = true
+    player.dir = "down"
   end
 
   if love.keyboard.isDown("up") then
-      player.dir = "up"
-      player.y = player.y - player.speed
-      player.anim = player.animation.up
-      isMoving = true
+    velocityY = -player.speed
+    player.anim = player.animation.up
+    isMoving = true
+    player.dir = "up"
   end
+
+  player.collider:setLinearVelocity(velocityX, velocityY)
 
   -- Attack
 
@@ -171,42 +163,22 @@ else
   bat.spriteSheet = love.graphics.newImage("sprites/bat-spritesheet.png")
 end
 
+-- UPDATE
+  gameMap:update(dt)
   player.anim:update(dt)
   attack.anim:update(dt)
-  bat.anim:update(dt)
-  gameMap:update(dt)
+  world:update(dt)
+  for i = 1, #bats do
+    bats[i].anim:update(dt)
+  end
+
+  -- COLLIDER POSITION
+  player.x = (player.collider:getX()) - 12
+  player.y = (player.collider:getY()) - 18
 
   -- updates cam everyframe to follow player
   cam:lookAt(player.x, player.y)
 
-  -- check width of the screen
-  -- local width = love.graphics.getWidth()
-  -- local height = love.graphics.getHeight()
-
-  -- if cam.x < width/2 then
-  --   cam.x = width/2
-  -- end
-  -- if cam.y < height/2 then
-  --   cam.y = height/2
-  -- end
-
-  -- -- to find how many tiles in map
-  -- -- for tiled maps, not a simple background
-  -- local mapWidth = gameMap.width * gameMap.tilewidth
-  -- local mapHeight = gameMap.height * gameMap.tileheight
-
-  -- -- -- for simple background
-  -- -- -- I THINK : local mapWidth = gameMap.width?
-
-  -- -- -- Right border
-  -- if cam.x > (mapWidth - width/2) then
-  --        cam.x = (mapWidth - width/2)
-  -- end
-
-  -- -- -- Bottom border
-  -- if cam.y > (mapHeight - height/2) then
-  --        cam.y = (mapHeight - height/2)
-  -- end
   rotation = getRotationFromDir(direction)
 end
 
@@ -229,23 +201,22 @@ function love.draw()
                   bats[i].anim:draw(bats[i].spriteSheet, bats[i].x, bats[i].y, nil, 2, 2)
                 end
 
-                -- ENEMIES
-                -- for i = 1, #enemies do
-                --     enemies[i]:draw()
-                -- end
-
                 -- PLAYER
+                -- EX:  player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, 9)
+                player.anim:draw(player.spriteSheet, player.x, player.y, nil, 2, 2)
+
                 -- for cam update offset variables (ox, oy)
                 -- love.graphics.draw( drawable, x, y, r, sx, sy, ox, oy, kx, ky)
                 -- ox = half sprite width
                 -- oy = half sprite height
 
-                -- EX:  player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, 9)
-                player.anim:draw(player.spriteSheet, player.x, player.y, nil, 2, 2)
 
                 -- ATTACK
                 -- attack.anim:draw(attack.spriteSheet, player.x, player.y, rotation,scaling?, scaling?)
                 attack.anim:draw(attack.spriteSheet, player.x, player.y, getRadianRotation(player.dir) , 2, 2)
+
+                -- COLLIDER
+                world:draw()
 
                 -- end
                 game:draw(game.state.paused)
