@@ -15,15 +15,10 @@ function love.load()
     sounds.music = love.audio.newSource("sounds/music.mp3", "stream")
     sounds.music:setLooping(true)
 
-
     --CAMERA
     camera = require ("libraries/camera")
     -- in link, cam = Camera(0, 0, scale)
     cam = camera()
-
-    -- COLLIDER
-    -- wf = require 'libraries/windfield'
-    -- world = wf.newWorld(0, 0)
 
     -- at gameStart, call a requireAll fun, in gameStart.lua
     require ("src/startup/gameStart")
