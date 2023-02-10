@@ -232,8 +232,9 @@ function love.draw()
             end
 
             -- COMMAND INFOS
-            love.graphics.print(love.timer.getFPS(), 10, 10)
-            love.graphics.print(player.dir, 10, 30)
-            love.graphics.print(getRadianRotation(player.dir), 10, 60)
+            love.graphics.setColor(0, 0, 0, 0.5)
+            love.graphics.rectangle("fill", 0, 0, love.graphics.getWidth(), 35) -- x, y, width, height
+            love.graphics.setColor(255, 255, 255)
             love.graphics.printf(text, 0, 10, love.graphics.getWidth(), "center")
+            love.graphics.print("Life: " .. player.life, 10, 10)
 end
