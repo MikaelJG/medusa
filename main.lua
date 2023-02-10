@@ -210,7 +210,18 @@ function love.draw()
 
                 -- ATTACK
                 -- attack.anim:draw(attack.spriteSheet, player.x, player.y, rotation,scaling?, scaling?)
-                attack.anim:draw(attack.spriteSheet, player.x, player.y, getRadianRotation(player.dir), 2, 2)
+                if player.dir == "left" then
+                    attack.anim:draw(attack.spriteSheet, player.x - 5, player.y + 30, getRadianRotation(player.dir), 2, 2)
+                elseif player.dir == "down" then
+                    attack.anim:draw(attack.spriteSheet, player.x + 30, player.y + 30, getRadianRotation(player.dir), 2, 2)
+                elseif player.dir == "up" then
+                    attack.anim:draw(attack.spriteSheet, player.x - 5, player.y, getRadianRotation(player.dir), 2, 2)
+                elseif player.dir == "right" then
+                    attack.anim:draw(attack.spriteSheet, player.x + 30, player.y, getRadianRotation(player.dir), 2, 2)
+                end
+
+
+
 
                 -- COLLIDER
                 -- world:draw()
