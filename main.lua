@@ -251,12 +251,11 @@ function love.draw()
                 -- oy = half sprite height
 
                 -- EX:  player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, 9)
-                player.anim:draw(player.spriteSheet, player.x, player.y, nil, 1.3, 1.3)
+                player.anim:draw(player.spriteSheet, player.x, player.y, nil, 2, 2)
 
                 -- ATTACK
                 -- attack.anim:draw(attack.spriteSheet, player.x, player.y, rotation,scaling?, scaling?)
                 attack.anim:draw(attack.spriteSheet, player.x, player.y, getRadianRotation(player.dir) , 2, 2)
-                --love.graphics.print(getRadianRotation(player.dir), 10, 60)
 
                 -- end
                 game:draw(game.state.paused)
