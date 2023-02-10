@@ -1,13 +1,22 @@
 anim8 = require 'libraries/anim8'
 
--- BAT
-bat = {}
-bat.x = 200
-bat.y = 100
-bat.spriteSheet = love.graphics.newImage("sprites/bat-spritesheet.png")
-bat.grid = anim8.newGrid(16, 16, bat.spriteSheet:getWidth(), bat.spriteSheet:getHeight())
+-- BAT ENEMY
+bats = {}
 
-bat.animation = {}
-bat.animation.right = anim8.newAnimation(bat.grid('1-4', 1), 0.2)
+for i = 1, 10 do
+  bat = {}
+  bat.x = love.math.random(0, 800)
+  bat.y = love.math.random(0, 800)
+  bat.speed = 100
+  -- bat.collider = world:newBSGRectangleCollider(bat.x, bat.y, 22, 33, 20) -- (x, y, width, height, mass)
+  -- bat.collider:setFixedRotation(true)
+  bat.spriteSheet = love.graphics.newImage("sprites/bat-spritesheet.png")
+  bat.grid = anim8.newGrid(16, 16, bat.spriteSheet:getWidth(), bat.spriteSheet:getHeight())
 
-bat.anim = bat.animation.right
+  bat.animation = {}
+  bat.animation.right = anim8.newAnimation(bat.grid('1-4', 1), 0.2)
+
+  bat.anim = bat.animation.right
+
+  table.insert(bats, i, bat)
+end

@@ -237,11 +237,13 @@ function love.draw()
                 -- MAP
                 -- Map:draw(tx, ty, sx, sy)
                 -- gameMap:draw(80, 8, 2, 2)
-        gameMap:drawLayer(gameMap.layers["Ground"])
-        gameMap:drawLayer(gameMap.layers["Trees"])
+                gameMap:drawLayer(gameMap.layers["Ground"])
+                gameMap:drawLayer(gameMap.layers["Trees"])
 
                 -- BAT
-                bat.anim:draw(bat.spriteSheet, bat.x, bat.y, nil, 2, 2)
+                for i = 1, #bats do
+                  bats[i].anim:draw(bats[i].spriteSheet, bats[i].x, bats[i].y, nil, 2, 2)
+                end
 
                 -- ENEMIES
                 -- for i = 1, #enemies do
@@ -274,11 +276,10 @@ function love.draw()
                 love.graphics.circle("fill", mouse_x, mouse_y, 10)
             end
 
+            -- COMMAND INFOS
             love.graphics.print(love.timer.getFPS(), 10, 10)
             love.graphics.print(player.dir, 10, 30)
             love.graphics.print(getRadianRotation(player.dir), 10, 60)
-            
-            -- COMMAND INFOS
             love.graphics.printf(text, 0, 10, love.graphics.getWidth(), "center")
 
         cam:detach()
