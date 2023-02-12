@@ -17,8 +17,7 @@ function love.load()
 
     --CAMERA
     camera = require ("libraries/camera")
-    -- in link, cam = Camera(0, 0, scale)
-    cam = camera()
+    cam = camera(400, 300, 3, 0)
 
     -- at gameStart, call a requireAll fun, in gameStart.lua
     require ("src/startup/gameStart")
@@ -133,26 +132,26 @@ function love.update(dt)
     table.remove(bats, i)
   else
     if bats[i].x < player.x then
-      bats[i].x = bats[i].x + 0.3
+      bats[i].x = bats[i].x + 0.1
     end
 
     if bats[i].y < player.y then
-      bats[i].y = bats[i].y + 0.3
+      bats[i].y = bats[i].y + 0.1
     end
 
     if bats[i].x > player.x then
-      bats[i].x = bats[i].x - 0.3
+      bats[i].x = bats[i].x - 0.1
     end
 
     if bats[i].y > player.y then
-      bats[i].y = bats[i].y - 0.3
+      bats[i].y = bats[i].y - 0.1
     end
   end
 end
 
 -- knock back
 for i = 1, #bats do
-    if bats[i].x < player.x + 35 and bats[i].x > player.x - 35 and bats[i].y < player.y + 35 and bats[i].y > player.y - 35 then
+    if bats[i].x < player.x + 20 and bats[i].x > player.x - 20 and bats[i].y < player.y + 20 and bats[i].y > player.y - 20 then
       if love.keyboard.isDown("space") then
         if player.dir == "left" then
           bats[i].x = bats[i].x - 100
@@ -202,23 +201,24 @@ function love.draw()
                 -- MAP
                 -- Map:draw(tx, ty, sx, sy)
                 -- gameMap:draw(80, 8, 2, 2)
-                gameMap:drawLayer(gameMap.layers["Ground"])
-                gameMap:drawLayer(gameMap.layers["Trees"])
-                gameMap:drawLayer(gameMap.layers["infos"])
+                gameMap:drawLayer(gameMap.layers["ground"])
+                gameMap:drawLayer(gameMap.layers["stone"])
+                gameMap:drawLayer(gameMap.layers["house"])
+                gameMap:drawLayer(gameMap.layers["object"])
 
                 -- BAT
                 for i = 1, #bats do
-                  bats[i].anim:draw(bats[i].spriteSheet, bats[i].x, bats[i].y, nil, 2, 2)
+                  bats[i].anim:draw(bats[i].spriteSheet, bats[i].x, bats[i].y, nil, 1, 1)
                 end
 
                 for i = 1, #bats do
-                  love.graphics.rectangle("fill", bats[i].x, bats[i].y - 20, bats[i].life, 2)
+                  love.graphics.rectangle("fill", bats[i].x + 3, bats[i].y - 3, bats[i].life, 0.5)
                   -- love.graphics.print(bats[i].life, bats[i].x, bats[i].y - 20)
                 end
 
                 -- PLAYER
                 -- EX:  player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, 9)
-                player.anim:draw(player.spriteSheet, player.x, player.y, nil, 2, 2)
+                player.anim:draw(player.spriteSheet, player.x, player.y, nil, 1, 1)
 
                 -- for cam update offset variables (ox, oy)
                 -- love.graphics.draw( drawable, x, y, r, sx, sy, ox, oy, kx, ky)
@@ -229,13 +229,13 @@ function love.draw()
                 -- ATTACK
                 -- attack.anim:draw(attack.spriteSheet, player.x, player.y, rotation,scaling?, scaling?)
                 if player.dir == "left" then
-                    attack.anim:draw(attack.spriteSheet, player.x - 5, player.y + 30, getRadianRotation(player.dir), 2, 2)
+                    attack.anim:draw(attack.spriteSheet, player.x - 2, player.y + 15, getRadianRotation(player.dir), 1, 1)
                 elseif player.dir == "down" then
-                    attack.anim:draw(attack.spriteSheet, player.x + 30, player.y + 30, getRadianRotation(player.dir), 2, 2)
+                    attack.anim:draw(attack.spriteSheet, player.x + 15, player.y + 15, getRadianRotation(player.dir), 1, 1)
                 elseif player.dir == "up" then
-                    attack.anim:draw(attack.spriteSheet, player.x - 5, player.y, getRadianRotation(player.dir), 2, 2)
+                    attack.anim:draw(attack.spriteSheet, player.x - 2, player.y, getRadianRotation(player.dir), 1, 1)
                 elseif player.dir == "right" then
-                    attack.anim:draw(attack.spriteSheet, player.x + 30, player.y, getRadianRotation(player.dir), 2, 2)
+                    attack.anim:draw(attack.spriteSheet, player.x + 15, player.y, getRadianRotation(player.dir), 1, 1)
                 end
 
                 -- COLLIDER
@@ -262,7 +262,7 @@ function love.draw()
                 love.graphics.setColor(255, 255, 255)
                 love.graphics.printf(text, 0, 10, love.graphics.getWidth(), "center")
                 love.graphics.print("Life: " .. player.life, 10, 10)
-                love.graphics.print("Bat: " .. #bats, love.graphics.getWidth() - 100, 10)
+                love.graphics.print("Ennemies: " .. #bats, love.graphics.getWidth() - 120, 10)
             end
 
 end
