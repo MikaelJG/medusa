@@ -132,19 +132,19 @@ function love.update(dt)
     table.remove(bats, i)
   else
     if bats[i].x < player.x then
-      bats[i].x = bats[i].x + 0.1
+      bats[i].x = bats[i].x + bat.speed
     end
 
     if bats[i].y < player.y then
-      bats[i].y = bats[i].y + 0.1
+      bats[i].y = bats[i].y + bat.speed
     end
 
     if bats[i].x > player.x then
-      bats[i].x = bats[i].x - 0.1
+      bats[i].x = bats[i].x - bat.speed
     end
 
     if bats[i].y > player.y then
-      bats[i].y = bats[i].y - 0.1
+      bats[i].y = bats[i].y - bat.speed
     end
   end
 end
