@@ -19,14 +19,13 @@ function love.load()
     local Dialove = require('libraries/dialove')
 
     dialogManager = Dialove.init({
-    font = love.graphics.newFont('font', 16)
+    font = love.graphics.newFont('fonts/vt323/VT323-Regular.ttf', 16)
   })
     dialogManager:push('Dialog content') -- stores a dialog into memory
     dialogManager:pop() -- requests the first pushed dialog to be shown on screen
 
     -- use this approach instead:
     dialogManager:show('Dialog content')
-    dialogManager:push('Dialog content')
     dialogManager:push('Dialog content')
 
     --CAMERA
