@@ -15,6 +15,20 @@ function love.load()
     sounds.music = love.audio.newSource("sounds/music.mp3", "stream")
     sounds.music:setLooping(true)
 
+    --DIALOG
+    local Dialove = require('libraries/dialove')
+
+    dialogManager = Dialove.init({
+    font = love.graphics.newFont('font', 16)
+  })
+    dialogManager:push('Dialog content') -- stores a dialog into memory
+    dialogManager:pop() -- requests the first pushed dialog to be shown on screen
+
+    -- use this approach instead:
+    dialogManager:show('Dialog content')
+    dialogManager:push('Dialog content')
+    dialogManager:push('Dialog content')
+
     --CAMERA
     camera = require ("libraries/camera")
     cam = camera(400, 300, 3, 0)
@@ -59,10 +73,9 @@ function love.update(dt)
     mouse_x, mouse_y = love.mouse.getPosition()
 
     if game.state.running then
-        -- player:movePlayer()
-        for i = 1, #enemies do
-            enemies[i]:move(player.x, player.y)
-        end
+        -- for i = 1, #enemies do
+        --     enemies[i]:move(player.x, player.y)
+        -- end
 
     elseif game.state.menu then -- check if in menu state
         menu:run(clickedMouse) -- run the menu
@@ -127,26 +140,26 @@ function love.update(dt)
 
  -- bat move
  for i = #bats, 1, -1 do
-  if bats[i].life <= 0 then
-    table.remove(bats, i)
-  else
-    if bats[i].x < player.x then
-      bats[i].x = bats[i].x + bat.speed
-    end
+    if bats[i].life <= 0 then
+      table.remove(bats, i)
+    else
+          if bats[i].x < player.x then
+            bats[i].x = bats[i].x + bat.speed
+          end
 
-    if bats[i].y < player.y then
-      bats[i].y = bats[i].y + bat.speed
-    end
+          if bats[i].y < player.y then
+            bats[i].y = bats[i].y + bat.speed
+          end
 
-    if bats[i].x > player.x then
-      bats[i].x = bats[i].x - bat.speed
-    end
+          if bats[i].x > player.x then
+            bats[i].x = bats[i].x - bat.speed
+          end
 
-    if bats[i].y > player.y then
-      bats[i].y = bats[i].y - bat.speed
+          if bats[i].y > player.y then
+            bats[i].y = bats[i].y - bat.speed
+          end
     end
   end
-end
 
 -- knock back
 for i = 1, #bats do

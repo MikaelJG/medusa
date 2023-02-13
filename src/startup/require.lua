@@ -9,6 +9,7 @@ function requireAll()
     -- LIBRARIES
     require("libraries/anim8")
     require('libraries/windfield')
+    require('libraries/dialove')
 
     -- MAP
     require("maps/gameMap")
