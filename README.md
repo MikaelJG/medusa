@@ -1,5 +1,5 @@
 
-![Logo](https://github.com/MikaelJG/noti/blob/master/assets/)
+![Logo](https://github.com/MikaelJG/medusa/blob/master/assets/start.png)
 
 Written in Lua, Medusa is an upcoming game, playable on LOVE2D. A prototype of the game is scheduled for the end of February. 
 
