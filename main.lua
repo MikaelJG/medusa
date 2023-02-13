@@ -184,8 +184,8 @@ end
   end
 
   -- COLLIDER POSITION
-  player.x = (player.collider:getX()) - 12
-  player.y = (player.collider:getY()) - 18
+  player.x = (player.collider:getX()) - 6
+  player.y = (player.collider:getY()) - 9
 
   -- updates cam everyframe to follow player
   cam:lookAt(player.x, player.y)

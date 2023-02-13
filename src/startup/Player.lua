@@ -10,7 +10,7 @@
     player = {}
     player.x = 20
     player.y = 400
-    player.collider = world:newBSGRectangleCollider(20, 400, 22, 33, 20) -- (x, y, width, height, mass)
+    player.collider = world:newBSGRectangleCollider(20, 400, 10, 15, 5) -- (x, y, width, height, mass)
     player.collider:setFixedRotation(true)
     player.dir = "down"
     player.radius = 10
