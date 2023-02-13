@@ -21,19 +21,24 @@ function love.load()
     dialogManager = Dialove.init({
     font = love.graphics.newFont('fonts/vt323/VT323-Regular.ttf', 30)
   })
-    -- dialogManager:push('first dialogue content') -- stores a dialog into memory
-    -- dialogManager:push('second Dialog content') -- stores a dialog into memory
-    -- dialogManager:pop() -- requests the first pushed dialog to be shown on screen
+    dialogManager:push('first dialogue content') -- stores a dialog into memory
+    dialogManager:push('second Dialog content') -- stores a dialog into memory
+    dialogManager:pop() -- requests the first pushed dialog to be shown on screen
 
     -- use this approach instead:
-    dialogManager:push('Julien!!! Tu es le meilleur! ')
+    dialogManager:push('Julien!!! Ca va? ')
     dialogManager:show({
 
     text = "C'est vraiment aberrant c't'histoire. J'en peux plus moi les gars.",
     title = 'Julien',
     image = love.graphics.newImage('assets/julien.png')
 })
+    dialogManager:show({
 
+    text = "Dit, tu connais Hollow Knight??",
+    title = 'Julien',
+    image = love.graphics.newImage('assets/julien.png')
+})
     --CAMERA
     camera = require ("libraries/camera")
     cam = camera(400, 300, 3, 0)
