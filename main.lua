@@ -19,14 +19,15 @@ function love.load()
     local Dialove = require('libraries/dialove')
 
     dialogManager = Dialove.init({
-    font = love.graphics.newFont('fonts/vt323/VT323-Regular.ttf', 16)
+    font = love.graphics.newFont('fonts/vt323/VT323-Regular.ttf', 30)
   })
-    dialogManager:push('Dialog content') -- stores a dialog into memory
+    dialogManager:push('first dialogue content') -- stores a dialog into memory
+    dialogManager:push('second Dialog content') -- stores a dialog into memory
     dialogManager:pop() -- requests the first pushed dialog to be shown on screen
 
     -- use this approach instead:
     dialogManager:show('Dialog content')
-    dialogManager:push('Dialog content')
+    dialogManager:push('Julien!!! Tu es le meilleur mon gars! ')
 
     --CAMERA
     camera = require ("libraries/camera")
@@ -49,10 +50,20 @@ end
 
 -- KEYBINDINGS [ START ]--
 function love.keypressed(key)
+
+        if key == 'd' then
+            dialogManager:pop("this is sisis si sis si ")
+        elseif key == 'c' then
+            dialogManager:complete()
+        elseif key == 'f' then
+            dialogManager:faster()
+        end
+
     if game.state.running then
         if key == "escape" then
             game:changeGameState("paused")
         end
+
     elseif game.state.paused then
         if key == "escape" then
             game:changeGameState("running")
@@ -63,6 +74,7 @@ end
 function love.mousepressed(x, y, button, istouch, presses)
     if button == 1 then
       clickedMouse = true -- set if mouse is clicked
+            dialogManager:pop()
     end
 end
 
@@ -190,6 +202,7 @@ end
   player.anim:update(dt)
   attack.anim:update(dt)
   world:update(dt)
+  dialogManager:update(dt)
   for i = 1, #bats do
     bats[i].anim:update(dt)
   end
@@ -216,6 +229,7 @@ function love.draw()
                 gameMap:drawLayer(gameMap.layers["stone"])
                 gameMap:drawLayer(gameMap.layers["house"])
                 gameMap:drawLayer(gameMap.layers["object"])
+
 
                 -- BAT
                 for i = 1, #bats do
@@ -255,6 +269,7 @@ function love.draw()
                 -- end
                 game:draw(game.state.paused)
             cam:detach() -- for HUD, print under detach()
+            dialogManager:draw()
 
             elseif game.state.menu then -- draw menu if in menu state
                 menu:draw()
