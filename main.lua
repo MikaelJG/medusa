@@ -21,13 +21,18 @@ function love.load()
     dialogManager = Dialove.init({
     font = love.graphics.newFont('fonts/vt323/VT323-Regular.ttf', 30)
   })
-    dialogManager:push('first dialogue content') -- stores a dialog into memory
-    dialogManager:push('second Dialog content') -- stores a dialog into memory
-    dialogManager:pop() -- requests the first pushed dialog to be shown on screen
+    -- dialogManager:push('first dialogue content') -- stores a dialog into memory
+    -- dialogManager:push('second Dialog content') -- stores a dialog into memory
+    -- dialogManager:pop() -- requests the first pushed dialog to be shown on screen
 
     -- use this approach instead:
-    dialogManager:show('Dialog content')
-    dialogManager:push('Julien!!! Tu es le meilleur mon gars! ')
+    dialogManager:push('Julien!!! Tu es le meilleur! ')
+    dialogManager:show({
+
+    text = "C'est vraiment aberrant c't'histoire. J'en peux plus moi les gars.",
+    title = 'Julien',
+    image = love.graphics.newImage('assets/julien.png')
+})
 
     --CAMERA
     camera = require ("libraries/camera")
@@ -52,7 +57,7 @@ end
 function love.keypressed(key)
 
         if key == 'd' then
-            dialogManager:pop("this is sisis si sis si ")
+            dialogManager:pop()
         elseif key == 'c' then
             dialogManager:complete()
         elseif key == 'f' then
