@@ -1,23 +1,6 @@
 local love = require "love"
 -- anim8 = require 'libraries/anim8'
 
--- flyEnemy = {}
--- flyEnemy.x = 400
--- flyEnemy.y = 200
--- flyEnemy.radius = 2
--- flyEnemy.speed = 1
-
--- flyEnemy.spriteSheet = love.graphics.newImage("sprites/fly-enemy.png")
--- flyEnemy.grid = anim8.newGrid(16, 1, flyEnemy.spriteSheet:getWidth(), flyEnemy.spriteSheet:getHeight())
-
--- flyEnemy.animation = {}
--- flyEnemy.animation.down = anim8.newAnimation(flyEnemy.grid('1-4', 1), 0.2)
--- flyEnemy.animation.left = anim8.newAnimation(flyEnemy.grid('1-4', 2), 0.2)
--- flyEnemy.animation.right = anim8.newAnimation(flyEnemy.grid('1-4', 3), 0.2)
--- flyEnemy.animation.up = anim8.newAnimation(flyEnemy.grid('1-4', 4), 0.2)
-
--- flyEnemy.anim = flyEnemy.animation.up
-
 function Enemy()
   local dice = math.random(1, 4)
   local enemy_x, enemy_y

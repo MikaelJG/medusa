@@ -19,26 +19,28 @@ function love.load()
     local Dialove = require('libraries/dialove')
 
     dialogManager = Dialove.init({
-    font = love.graphics.newFont('fonts/vt323/VT323-Regular.ttf', 30)
-  })
+      font = love.graphics.newFont('fonts/vt323/VT323-Regular.ttf', 30)
+    })
+
     dialogManager:push('first dialogue content') -- stores a dialog into memory
     dialogManager:push('second Dialog content') -- stores a dialog into memory
     dialogManager:pop() -- requests the first pushed dialog to be shown on screen
 
     -- use this approach instead:
     dialogManager:push('Julien!!! Ca va? ')
-    dialogManager:show({
 
-    text = "C'est vraiment aberrant c't'histoire. J'en peux plus moi les gars.",
-    title = 'Julien',
-    image = love.graphics.newImage('assets/julien.png')
-})
     dialogManager:show({
+      text = "C'est vraiment aberrant c't'histoire. J'en peux plus moi les gars.",
+      title = 'Julien',
+      image = love.graphics.newImage('assets/julien.png')
+    })
 
-    text = "Dit, tu connais Hollow Knight??",
-    title = 'Julien',
-    image = love.graphics.newImage('assets/julien.png')
-})
+    dialogManager:show({
+      text = "Dit, tu connais Hollow Knight??",
+      title = 'Julien',
+      image = love.graphics.newImage('assets/julien.png')
+    })
+
     --CAMERA
     camera = require ("libraries/camera")
     cam = camera(400, 300, 3, 0)
@@ -61,13 +63,13 @@ end
 -- KEYBINDINGS [ START ]--
 function love.keypressed(key)
 
-        if key == 'd' then
-            dialogManager:pop()
-        elseif key == 'c' then
-            dialogManager:complete()
-        elseif key == 'f' then
-            dialogManager:faster()
-        end
+    if key == 'd' then
+        dialogManager:pop()
+    elseif key == 'c' then
+        dialogManager:complete()
+    elseif key == 'f' then
+        dialogManager:faster()
+    end
 
     if game.state.running then
         if key == "escape" then
@@ -164,21 +166,21 @@ function love.update(dt)
         if bats[i].life <= 0 then
           table.remove(bats, i)
         else
-              if bats[i].x < player.x then
-                bats[i].x = bats[i].x + bat.speed
-              end
+          if bats[i].x < player.x then
+            bats[i].x = bats[i].x + bat.speed
+          end
 
-              if bats[i].y < player.y then
-                bats[i].y = bats[i].y + bat.speed
-              end
+          if bats[i].y < player.y then
+            bats[i].y = bats[i].y + bat.speed
+          end
 
-              if bats[i].x > player.x then
-                bats[i].x = bats[i].x - bat.speed
-              end
+          if bats[i].x > player.x then
+            bats[i].x = bats[i].x - bat.speed
+          end
 
-              if bats[i].y > player.y then
-                bats[i].y = bats[i].y - bat.speed
-              end
+          if bats[i].y > player.y then
+            bats[i].y = bats[i].y - bat.speed
+          end
         end
       end
 
