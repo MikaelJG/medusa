@@ -113,192 +113,194 @@ function love.update(dt)
     local velocityX = 0
     local velocityY = 0
 
-  if love.keyboard.isDown("right") then
-    velocityX = player.speed
-    player.anim = player.animation.right
-    isMoving = true
-    player.dir = "right"
-  end
-
-  if love.keyboard.isDown("left") then
-    velocityX = -player.speed
-    player.anim = player.animation.left
-    isMoving = true
-    player.dir = "left"
-  end
-
-  if love.keyboard.isDown("down") then
-    velocityY = player.speed
-    player.anim = player.animation.down
-    isMoving = true
-    player.dir = "down"
-  end
-
-  if love.keyboard.isDown("up") then
-    velocityY = -player.speed
-    player.anim = player.animation.up
-    isMoving = true
-    player.dir = "up"
-  end
-
-  player.collider:setLinearVelocity(velocityX, velocityY)
-
-  -- Attack
-
-  if love.keyboard.isDown("space") then
-    -- attack.anim:gotoFrame(1)
-    attack.anim:update(dt)
-    isAttack = true
-  end
-
-  if isAttack == false then
-    attack.anim:gotoFrame(4)
-  end
-
-  if isMoving == false then
-    player.anim:gotoFrame(2)
-  end
-
- -- bat move
- for i = #bats, 1, -1 do
-    if bats[i].life <= 0 then
-      table.remove(bats, i)
-    else
-          if bats[i].x < player.x then
-            bats[i].x = bats[i].x + bat.speed
-          end
-
-          if bats[i].y < player.y then
-            bats[i].y = bats[i].y + bat.speed
-          end
-
-          if bats[i].x > player.x then
-            bats[i].x = bats[i].x - bat.speed
-          end
-
-          if bats[i].y > player.y then
-            bats[i].y = bats[i].y - bat.speed
-          end
+    if love.keyboard.isDown("right") then
+      velocityX = player.speed
+      player.anim = player.animation.right
+      isMoving = true
+      player.dir = "right"
     end
-  end
 
--- knock back
-for i = 1, #bats do
-    if bats[i].x < player.x + 20 and bats[i].x > player.x - 20 and bats[i].y < player.y + 20 and bats[i].y > player.y - 20 then
-      if love.keyboard.isDown("space") then
-        if player.dir == "left" then
-          bats[i].x = bats[i].x - 100
-          bats[i].life = bats[i].life - 1
-        elseif player.dir == "down" then
-          bats[i].y = player.y + 100
-          bats[i].life = bats[i].life - 1
-        elseif player.dir == "up" then
-          bats[i].y = player.y - 100
-          bats[i].life = bats[i].life - 1
-        elseif player.dir == "right" then
-          bats[i].x = bats[i].x + 100
-          bats[i].life = bats[i].life - 1
+    if love.keyboard.isDown("left") then
+      velocityX = -player.speed
+      player.anim = player.animation.left
+      isMoving = true
+      player.dir = "left"
+    end
+
+    if love.keyboard.isDown("down") then
+      velocityY = player.speed
+      player.anim = player.animation.down
+      isMoving = true
+      player.dir = "down"
+    end
+
+    if love.keyboard.isDown("up") then
+      velocityY = -player.speed
+      player.anim = player.animation.up
+      isMoving = true
+      player.dir = "up"
+    end
+
+    player.collider:setLinearVelocity(velocityX, velocityY)
+
+    -- Attack
+
+    if love.keyboard.isDown("space") then
+      -- attack.anim:gotoFrame(1)
+      attack.anim:update(dt)
+      isAttack = true
+    end
+
+    if isAttack == false then
+      attack.anim:gotoFrame(4)
+    end
+
+    if isMoving == false then
+      player.anim:gotoFrame(2)
+    end
+
+    -- bat move
+    for i = #bats, 1, -1 do
+        if bats[i].life <= 0 then
+          table.remove(bats, i)
+        else
+              if bats[i].x < player.x then
+                bats[i].x = bats[i].x + bat.speed
+              end
+
+              if bats[i].y < player.y then
+                bats[i].y = bats[i].y + bat.speed
+              end
+
+              if bats[i].x > player.x then
+                bats[i].x = bats[i].x - bat.speed
+              end
+
+              if bats[i].y > player.y then
+                bats[i].y = bats[i].y - bat.speed
+              end
         end
-        attack.anim:draw(attack.spriteSheet, player.x + 30, player.y, getRadianRotation(player.dir), 2, 2)
       end
-    else
-      bats[i].spriteSheet = love.graphics.newImage("sprites/bat-spritesheet.png")
-    end
-end
+
+      -- knock back
+      for i = 1, #bats do
+          if bats[i].x < player.x + 20 and bats[i].x > player.x - 20 and bats[i].y < player.y + 20 and bats[i].y > player.y - 20 then
+            if love.keyboard.isDown("space") then
+              if player.dir == "left" then
+                bats[i].x = bats[i].x - 100
+                bats[i].life = bats[i].life - 1
+              elseif player.dir == "down" then
+                bats[i].y = player.y + 100
+                bats[i].life = bats[i].life - 1
+              elseif player.dir == "up" then
+                bats[i].y = player.y - 100
+                bats[i].life = bats[i].life - 1
+              elseif player.dir == "right" then
+                bats[i].x = bats[i].x + 100
+                bats[i].life = bats[i].life - 1
+              end
+              attack.anim:draw(attack.spriteSheet, player.x + 30, player.y, getRadianRotation(player.dir), 2, 2)
+            end
+          else
+            bats[i].spriteSheet = love.graphics.newImage("sprites/bat-spritesheet.png")
+          end
+      end
 
 
--- UPDATE
-  gameMap:update(dt)
-  player.anim:update(dt)
-  attack.anim:update(dt)
-  world:update(dt)
-  dialogManager:update(dt)
-  for i = 1, #bats do
-    bats[i].anim:update(dt)
-  end
+    -- UPDATE
+      gameMap:update(dt)
+      player.anim:update(dt)
+      attack.anim:update(dt)
+      world:update(dt)
+      dialogManager:update(dt)
+      for i = 1, #bats do
+        bats[i].anim:update(dt)
+      end
 
-  -- COLLIDER POSITION
-  player.x = (player.collider:getX()) - 6
-  player.y = (player.collider:getY()) - 9
+      -- COLLIDER POSITION
+      player.x = (player.collider:getX()) - 6
+      player.y = (player.collider:getY()) - 9
 
-  -- updates cam everyframe to follow player
-  cam:lookAt(player.x, player.y)
+      -- updates cam everyframe to follow player
+      cam:lookAt(player.x, player.y)
 
 end
 
 function love.draw()
 
-            if game.state.running or game.state.paused then
-                sounds.music:play()
+      if game.state.running or game.state.paused then
+          sounds.music:play()
 
-            cam:attach()
-                -- MAP
-                -- Map:draw(tx, ty, sx, sy)
-                -- gameMap:draw(80, 8, 2, 2)
-                gameMap:drawLayer(gameMap.layers["ground"])
-                gameMap:drawLayer(gameMap.layers["stone"])
-                gameMap:drawLayer(gameMap.layers["house"])
-                gameMap:drawLayer(gameMap.layers["object"])
-
-
-                -- BAT
-                for i = 1, #bats do
-                  bats[i].anim:draw(bats[i].spriteSheet, bats[i].x, bats[i].y, nil, 1, 1)
-                end
-
-                for i = 1, #bats do
-                  love.graphics.rectangle("fill", bats[i].x + 3, bats[i].y - 3, bats[i].life, 0.5)
-                  -- love.graphics.print(bats[i].life, bats[i].x, bats[i].y - 20)
-                end
-
-                -- PLAYER
-                -- EX:  player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, 9)
-                player.anim:draw(player.spriteSheet, player.x, player.y, nil, 1, 1)
-
-                -- for cam update offset variables (ox, oy)
-                -- love.graphics.draw( drawable, x, y, r, sx, sy, ox, oy, kx, ky)
-                -- ox = half sprite width
-                -- oy = half sprite height
+      cam:attach()
+          -- MAP
+          -- Map:draw(tx, ty, sx, sy)
+          -- gameMap:draw(80, 8, 2, 2)
+          gameMap:drawLayer(gameMap.layers["ground"])
+          gameMap:drawLayer(gameMap.layers["stone"])
+          gameMap:drawLayer(gameMap.layers["house"])
+          gameMap:drawLayer(gameMap.layers["object"])
 
 
-                -- ATTACK
-                -- attack.anim:draw(attack.spriteSheet, player.x, player.y, rotation,scaling?, scaling?)
-                if player.dir == "left" then
-                    attack.anim:draw(attack.spriteSheet, player.x - 2, player.y + 15, getRadianRotation(player.dir), 1, 1)
-                elseif player.dir == "down" then
-                    attack.anim:draw(attack.spriteSheet, player.x + 15, player.y + 15, getRadianRotation(player.dir), 1, 1)
-                elseif player.dir == "up" then
-                    attack.anim:draw(attack.spriteSheet, player.x - 2, player.y, getRadianRotation(player.dir), 1, 1)
-                elseif player.dir == "right" then
-                    attack.anim:draw(attack.spriteSheet, player.x + 15, player.y, getRadianRotation(player.dir), 1, 1)
-                end
+          -- BAT
+          for i = 1, #bats do
+            bats[i].anim:draw(bats[i].spriteSheet, bats[i].x, bats[i].y, nil, 1, 1)
+          end
 
-                -- COLLIDER
-                -- world:draw()
+          for i = 1, #bats do
+            love.graphics.rectangle("fill", bats[i].x + 3, bats[i].y - 3, bats[i].life, 0.5)
+            -- love.graphics.print(bats[i].life, bats[i].x, bats[i].y - 20)
+          end
 
-                -- end
-                game:draw(game.state.paused)
-            cam:detach() -- for HUD, print under detach()
-            dialogManager:draw()
+          -- PLAYER
+          -- EX:  player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, 9)
+          player.anim:draw(player.spriteSheet, player.x, player.y, nil, 1, 1)
 
-            elseif game.state.menu then -- draw menu if in menu state
-                menu:draw()
-            end
+          -- for cam update offset variables (ox, oy)
+          -- love.graphics.draw( drawable, x, y, r, sx, sy, ox, oy, kx, ky)
+          -- ox = half sprite width
+          -- oy = half sprite height
 
-            love.graphics.setColor(1, 1, 1, 1)
 
-            if not game.state.running then -- draw cursor if not in running state
-                love.graphics.circle("fill", mouse_x, mouse_y, 10)
-            end
+          -- ATTACK
+          -- attack.anim:draw(attack.spriteSheet, player.x, player.y, rotation,scaling?, scaling?)
+          if player.dir == "left" then
+              attack.anim:draw(attack.spriteSheet, player.x - 2, player.y + 15, getRadianRotation(player.dir), 1, 1)
+          elseif player.dir == "down" then
+              attack.anim:draw(attack.spriteSheet, player.x + 15, player.y + 15, getRadianRotation(player.dir), 1, 1)
+          elseif player.dir == "up" then
+              attack.anim:draw(attack.spriteSheet, player.x - 2, player.y, getRadianRotation(player.dir), 1, 1)
+          elseif player.dir == "right" then
+              attack.anim:draw(attack.spriteSheet, player.x + 15, player.y, getRadianRotation(player.dir), 1, 1)
+          end
 
-            if game.state.running then
-                -- COMMAND INFOS
-                love.graphics.setColor(0, 0, 0, 0.5)
-                love.graphics.rectangle("fill", 0, 0, love.graphics.getWidth(), 35) -- x, y, width, height
-                love.graphics.setColor(255, 255, 255)
-                love.graphics.printf(text, 0, 10, love.graphics.getWidth(), "center")
-                love.graphics.print("Life: " .. player.life, 10, 10)
-                love.graphics.print("Ennemies: " .. #bats, love.graphics.getWidth() - 120, 10)
-            end
+          -- COLLIDER
+          -- world:draw()
+
+          -- end
+          game:draw(game.state.paused)
+      cam:detach() -- for HUD, print under detach()
+
+      -- DIALOG
+      dialogManager:draw()
+
+      elseif game.state.menu then -- draw menu if in menu state
+          menu:draw()
+      end
+
+      love.graphics.setColor(1, 1, 1, 1)
+
+      if not game.state.running then -- draw cursor if not in running state
+          love.graphics.circle("fill", mouse_x, mouse_y, 10)
+      end
+
+      if game.state.running then
+          -- COMMAND INFOS
+          love.graphics.setColor(0, 0, 0, 0.5)
+          love.graphics.rectangle("fill", 0, 0, love.graphics.getWidth(), 35) -- x, y, width, height
+          love.graphics.setColor(255, 255, 255)
+          love.graphics.printf(text, 0, 10, love.graphics.getWidth(), "center")
+          love.graphics.print("Life: " .. player.life, 10, 10)
+          love.graphics.print("Ennemies: " .. #bats, love.graphics.getWidth() - 120, 10)
+      end
 
 end
