@@ -57,12 +57,33 @@ function love.load()
 
     -- On start, insert an enemy in empty table ennemies
     table.insert(enemies, 1, Enemy())
+
+
+    -- QUERY
+    button = world:newRectangleCollider(10, 350, 20, 20)
+    world:addCollisionClass('Player')
+    player.collider:setCollisionClass("Player")
+
+    world:addCollisionClass('Button')
+    button:setCollisionClass("Button")
+
 end
+
 
 
 -- KEYBINDINGS [ START ]--
 function love.keypressed(key)
 
+    -- QUERY
+    if key == 'a' then
+      local px, py = player.collider:getPosition()
+      local colliders = world:queryCircleArea(px, py, 8, {'Button'})
+    if #colliders > 0 then
+      player.life = player.life + 1
+      end
+    end
+
+    -- DIALOGUE
     if key == 'd' then
         dialogManager:pop()
     elseif key == 'c' then
@@ -71,6 +92,7 @@ function love.keypressed(key)
         dialogManager:faster()
     end
 
+    -- MENU
     if game.state.running then
         if key == "escape" then
             game:changeGameState("paused")
@@ -276,7 +298,7 @@ function love.draw()
           end
 
           -- COLLIDER
-          -- world:draw()
+          world:draw()
 
           -- end
           game:draw(game.state.paused)
