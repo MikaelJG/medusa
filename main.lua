@@ -70,14 +70,21 @@ function love.load()
     -- end
     chunks = gameMap.layers["object"].chunks
     for i = 1, #chunks do
-      print(chunks[i].x, chunks[i].y)
+        x = chunks[i].x
+        y = chunks[i].y
+        print(x)
+        print(y)
+      object = world:newRectangleCollider(x, y, 20, 20)
     end
     button = world:newRectangleCollider(60, 290, 20, 20)
+    button:setType("static")
     world:addCollisionClass('Player')
     player.collider:setCollisionClass("Player")
 
     world:addCollisionClass('Button')
     button:setCollisionClass("Button")
+    world:addCollisionClass('Object')
+    object:setCollisionClass("Object")
 
 end
 
@@ -245,8 +252,6 @@ function love.update(dt)
 
     -- UPDATE
       gameMap:update(dt)
-
-      print(#gameMap.layers["object"].chunks)
       player.anim:update(dt)
       attack.anim:update(dt)
       world:update(dt)
