@@ -72,11 +72,14 @@ function love.load()
     end
 
     button = world:newRectangleCollider(60, 290, 20, 20)
+    button:setType("static")
     world:addCollisionClass('Player')
     player.collider:setCollisionClass("Player")
 
     world:addCollisionClass('Button')
     button:setCollisionClass("Button")
+    world:addCollisionClass('Object')
+    object:setCollisionClass("Object")
 
 end
 
@@ -244,7 +247,10 @@ function love.update(dt)
 
     -- UPDATE
       gameMap:update(dt)
+<<<<<<< HEAD
 
+=======
+>>>>>>> fdb9e203c3e55f76921a23b5b9e14bb76fb1c642
       player.anim:update(dt)
       attack.anim:update(dt)
       world:update(dt)
