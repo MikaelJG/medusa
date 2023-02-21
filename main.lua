@@ -60,7 +60,19 @@ function love.load()
 
 
     -- QUERY
-    button = world:newRectangleCollider(10, 350, 20, 20)
+    -- objects = {}
+    -- if gameMap.layers["objects"] then
+    --   for i, obj in pairs(gameMap.layers["objects"].objects) do
+    --     local object = world:newRectangleCollider(obj.x, obj.y, obj.width, obj.height) -- (x, y, width, height, mass)
+    --     object:setType("static")
+    --     table.insert(objects, object)
+    --   end
+    -- end
+    chunks = gameMap.layers["object"].chunks
+    for i = 1, #chunks do
+      print(chunks[i].x, chunks[i].y)
+    end
+    button = world:newRectangleCollider(60, 290, 20, 20)
     world:addCollisionClass('Player')
     player.collider:setCollisionClass("Player")
 
@@ -263,7 +275,6 @@ function love.draw()
           gameMap:drawLayer(gameMap.layers["stone"])
           gameMap:drawLayer(gameMap.layers["house"])
           gameMap:drawLayer(gameMap.layers["object"])
-
 
           -- BAT
           for i = 1, #bats do
