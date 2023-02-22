@@ -62,21 +62,29 @@ function love.load()
     -- QUERY
 
     local panels = gameMap.layers["panels"].objects
-    print(#panels)
+    -- world:addCollisionClass('Panel')
+
+    buttons = {}
 
     for i = 1, #panels do
         local panel = panels[i]
         print(panel.x, panel.y)
-        panel = world:newRectangleCollider(panel.x, panel.y, panel.width, panel.height)
-      end
+        -- panel = world:newRectangleCollider(panel.x, panel.y, panel.width, panel.height)
+        button = world:newRectangleCollider(panel.x, panel.y, 20, 20)
+        table.insert(buttons, button)
+        -- panel:setType("static")
+        -- panel:setCollisionClass("Panel")
+    end
 
-      button = world:newRectangleCollider(60, 290, 20, 20)
-      button:setType("static")
       world:addCollisionClass('Player')
       player.collider:setCollisionClass("Player")
 
       world:addCollisionClass('Button')
-      button:setCollisionClass("Button")
+
+     for i = 1, #buttons do
+        buttons[i]:setCollisionClass("Button")
+        buttons[i]:setType("static")
+     end
 
       -- world:addCollisionClass('Panel')
       -- panel:setCollisionClass("Panel")
@@ -277,8 +285,8 @@ function love.draw()
           gameMap:drawLayer(gameMap.layers["stone"])
           gameMap:drawLayer(gameMap.layers["house"])
           gameMap:drawLayer(gameMap.layers["object"])
-          gameMap:drawLayer(gameMap.layers["plants"])
-          gameMap:drawLayer(gameMap.layers["panels"])
+          -- gameMap:drawLayer(gameMap.layers["plants"])
+          -- gameMap:drawLayer(gameMap.layers["panels"])
 
           -- BAT
           for i = 1, #bats do
