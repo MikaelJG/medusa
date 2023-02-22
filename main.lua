@@ -22,8 +22,10 @@ function love.load()
       font = love.graphics.newFont('fonts/vt323/VT323-Regular.ttf', 30)
     })
 
-    -- dialogManager:push('first dialogue content') -- stores a dialog into memory
-    -- dialogManager:push('second Dialog content') -- stores a dialog into memory
+    dialogManager:push('first dialogue content') -- stores a dialog into memory
+    dialogManager:push('second Dialog content') -- stores a dialog into memory
+    dialogManager:push('third Dialog content') -- stores a dialog into memory
+    dialogManager:push('fourth Dialog content') -- stores a dialog into memory
     -- dialogManager:pop() -- requests the first pushed dialog to be shown on screen
 
     -- -- use this approach instead:
@@ -61,7 +63,7 @@ function love.load()
 
     -- QUERY
 
-    local panels = gameMap.layers["panels"].objects
+    panels = gameMap.layers["panels"].objects
     -- world:addCollisionClass('Panel')
 
     buttons = {}
@@ -101,7 +103,14 @@ function love.keypressed(key)
       local px, py = player.collider:getPosition()
       local colliders = world:queryCircleArea(px, py, 8, {'Button'})
     if #colliders > 0 then
-      player.life = player.life + 1
+        for i = 1, #panels do
+            dialog = string.format("Je suis panel %s", panels[i])
+            dialogManager:push(dialog)
+            dialogManager:pop()
+        end
+          
+      -- player.life = player.life + 1
+      -- dialogManager:pop() -- requests the first pushed dialog to be shown on screen
       end
     end
 
