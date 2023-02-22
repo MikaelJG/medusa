@@ -60,22 +60,17 @@ function love.load()
 
 
     -- QUERY
-    -- objects = {}
-    -- if gameMap.layers["objects"] then
-    --   for i, obj in pairs(gameMap.layers["objects"].objects) do
-    --     local object = world:newRectangleCollider(obj.x, obj.y, obj.width, obj.height) -- (x, y, width, height, mass)
-    --     object:setType("static")
-    --     table.insert(objects, object)
-    --   end
-    -- end
-    chunks = gameMap.layers["object"].chunks
-    for i = 1, #chunks do
-        x = chunks[i].x
-        y = chunks[i].y
-        print(x)
-        print(y)
-      object = world:newRectangleCollider(x, y, 20, 20)
+
+    local panels = gameMap.layers["panels"].objects
+
+    for i = 1, #panels do
+        local panel = panels[i]
+        print(panel.x, panel.y)
+        panel = world:newRectangleCollider(panel.x, panel.y, panel.width, panel.height)
+        world:addCollisionClass('Panel')
+        panel:setCollisionClass("Panel")
     end
+
     button = world:newRectangleCollider(60, 290, 20, 20)
     button:setType("static")
     world:addCollisionClass('Player')
@@ -252,6 +247,10 @@ function love.update(dt)
 
     -- UPDATE
       gameMap:update(dt)
+<<<<<<< HEAD
+
+=======
+>>>>>>> fdb9e203c3e55f76921a23b5b9e14bb76fb1c642
       player.anim:update(dt)
       attack.anim:update(dt)
       world:update(dt)
