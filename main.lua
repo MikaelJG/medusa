@@ -67,18 +67,19 @@ function love.load()
         local panel = panels[i]
         print(panel.x, panel.y)
         panel = world:newRectangleCollider(panel.x, panel.y, panel.width, panel.height)
-        world:addCollisionClass('Panel')
-        panel:setCollisionClass("Panel")
-    end
+      end
 
-    button = world:newRectangleCollider(60, 290, 20, 20)
-    button:setType("static")
-    world:addCollisionClass('Player')
-    player.collider:setCollisionClass("Player")
+      button = world:newRectangleCollider(60, 290, 20, 20)
+      button:setType("static")
+      world:addCollisionClass('Player')
+      player.collider:setCollisionClass("Player")
 
-    world:addCollisionClass('Button')
-    button:setCollisionClass("Button")
+      world:addCollisionClass('Button')
+      button:setCollisionClass("Button")
 
+      -- world:addCollisionClass('Panel')
+      -- panel:setCollisionClass("Panel")
+      -- panel:setType('static')
 end
 
 
