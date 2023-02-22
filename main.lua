@@ -12,7 +12,7 @@ function love.load()
     -- SOUNDS
     sounds = {}
     sounds.blip = love.audio.newSource("sounds/blip.wav", "static")
-    -- sounds.music = love.audio.newSource("sounds/medusa.mp3", "stream")
+    sounds.music = love.audio.newSource("sounds/medusa.mp3", "stream")
     sounds.music:setLooping(true)
 
     --DIALOG
@@ -113,16 +113,21 @@ function love.keypressed(key)
     if key == 'a' then
       local px, py = player.collider:getPosition()
       local colliders = world:queryCircleArea(px, py, 8, {'Button'})
-    if #colliders > 0 then
-        -- panel_1_range between 60 and 90, ...
-        if px > 60 and px < 90 and py > 300 and py < 330 then
-              dialog = string.format("Je suis panel 1")
-              dialogManager:push(dialog)
-              dialogManager:pop()
+        if #colliders > 0 then
+           print(player.collider:getPosition())
+           -- panel_1_range between 60 and 90, ...
+           if px > 60 and px < 90 and py > 300 and py < 330 then
+                  dialog = string.format("Je suis panel 1")
+                  dialogManager:push(dialog)
+                  dialogManager:pop()
+           end
+           if px > 100 and px < 150 and py > 80 and py < 110 then
+                  dialog = string.format("Je suis panel 2")
+                  dialogManager:push(dialog)
+                  dialogManager:pop()
+           end
+          -- dialogManager:pop() -- requests the first pushed dialog to be shown on screen
         end
-      end
-      -- dialogManager:pop() -- requests the first pushed dialog to be shown on screen
-      end
     end
 
     -- PLANTS INTERACTION
@@ -132,15 +137,6 @@ function love.keypressed(key)
       if #plantsColliders > 0 then
         player.life = player.life + 1
       end
-    end
-
-    -- DIALOGUE
-    if key == 'd' then
-        dialogManager:pop()
-    elseif key == 'c' then
-        dialogManager:complete()
-    elseif key == 'f' then
-        dialogManager:faster()
     end
 
     -- MENU
