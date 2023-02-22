@@ -120,13 +120,23 @@ function love.keypressed(key)
                   dialog = string.format("Je suis panel 1")
                   dialogManager:push(dialog)
                   dialogManager:pop()
-           end
-           if px > 100 and px < 150 and py > 80 and py < 110 then
+           elseif px > 100 and px < 150 and py > 80 and py < 110 then
                   dialog = string.format("Je suis panel 2")
                   dialogManager:push(dialog)
                   dialogManager:pop()
+           elseif px > 100 and px < 150 and py > 80 and py < 110 then
+                  dialog = string.format("Je suis panel 2")
+                  dialogManager:push(dialog)
+                  dialogManager:pop()
+           elseif px > 250 and px < 300 and py > 20 and py < 40 then
+                  dialog = string.format("Je suis panel 3")
+                  dialogManager:push(dialog)
+                  dialogManager:pop()
+           elseif px > -290 and px < -240 and py > -280 and py < -210 then
+                  dialog = string.format("Je suis panel 4")
+                  dialogManager:push(dialog)
+                  dialogManager:pop()
            end
-          -- dialogManager:pop() -- requests the first pushed dialog to be shown on screen
         end
     end
 
