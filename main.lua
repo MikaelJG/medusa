@@ -78,14 +78,34 @@ function love.load()
         -- panel:setCollisionClass("Panel")
     end
 
+    local plants = gameMap.layers["plants"].objects
+
+    plantsButtons = {}
+
+    for i = 1, #plants do
+      local plant = plants[i]
+      print(plant.x, plant.y)
+      -- panel = world:newRectangleCollider(panel.x, panel.y, panel.width, panel.height)
+      plantsButton = world:newRectangleCollider(plant.x, plant.y, 15, 10)
+      table.insert(plantsButtons, plantsButton)
+      -- panel:setType("static")
+      -- panel:setCollisionClass("Panel")
+    end
+
       world:addCollisionClass('Player')
       player.collider:setCollisionClass("Player")
 
       world:addCollisionClass('Button')
+      world:addCollisionClass('plantsButton')
 
      for i = 1, #buttons do
         buttons[i]:setCollisionClass("Button")
         buttons[i]:setType("static")
+     end
+
+     for i = 1, #plantsButtons do
+      plantsButtons[i]:setCollisionClass("plantsButton")
+      plantsButtons[i]:setType("static")
      end
 
       -- world:addCollisionClass('Panel')
@@ -103,14 +123,21 @@ function love.keypressed(key)
       local px, py = player.collider:getPosition()
       local colliders = world:queryCircleArea(px, py, 8, {'Button'})
     if #colliders > 0 then
-        for i = 1, #panels do
-            dialog = string.format("Je suis panel %s", panels[i])
-            dialogManager:push(dialog)
-            dialogManager:pop()
-        end
-          
-      -- player.life = player.life + 1
+      for i = 1, #panels do
+        dialog = string.format("Je suis panel %s", panels[i])
+        dialogManager:push(dialog)
+        dialogManager:pop()
+      end
       -- dialogManager:pop() -- requests the first pushed dialog to be shown on screen
+      end
+    end
+
+    -- PLANTS INTERACTION
+    if key == 's' then
+      local playerX, playerY = player.collider:getPosition()
+      local plantsColliders = world:queryCircleArea(playerX, playerY, 8, {'plantsButton'})
+      if #plantsColliders > 0 then
+        player.life = player.life + 1
       end
     end
 
