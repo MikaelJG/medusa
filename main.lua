@@ -12,7 +12,7 @@ function love.load()
     -- SOUNDS
     sounds = {}
     sounds.blip = love.audio.newSource("sounds/blip.wav", "static")
-    sounds.music = love.audio.newSource("sounds/music.mp3", "stream")
+    sounds.music = love.audio.newSource("sounds/medusa.mp3", "stream")
     sounds.music:setLooping(true)
 
     --DIALOG
@@ -62,6 +62,7 @@ function love.load()
     -- QUERY
 
     local panels = gameMap.layers["panels"].objects
+    print(#panels)
 
     for i = 1, #panels do
         local panel = panels[i]
