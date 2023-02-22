@@ -70,7 +70,7 @@ function love.load()
         local panel = panels[i]
         print(panel.x, panel.y)
         -- panel = world:newRectangleCollider(panel.x, panel.y, panel.width, panel.height)
-        button = world:newRectangleCollider(panel.x, panel.y, 20, 20)
+        button = world:newRectangleCollider(panel.x, panel.y, 15, 10)
         table.insert(buttons, button)
         -- panel:setType("static")
         -- panel:setCollisionClass("Panel")
