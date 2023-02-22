@@ -78,8 +78,6 @@ function love.load()
 
     world:addCollisionClass('Button')
     button:setCollisionClass("Button")
-    world:addCollisionClass('Object')
-    object:setCollisionClass("Object")
 
 end
 
@@ -247,10 +245,6 @@ function love.update(dt)
 
     -- UPDATE
       gameMap:update(dt)
-<<<<<<< HEAD
-
-=======
->>>>>>> fdb9e203c3e55f76921a23b5b9e14bb76fb1c642
       player.anim:update(dt)
       attack.anim:update(dt)
       world:update(dt)
@@ -281,6 +275,8 @@ function love.draw()
           gameMap:drawLayer(gameMap.layers["stone"])
           gameMap:drawLayer(gameMap.layers["house"])
           gameMap:drawLayer(gameMap.layers["object"])
+          gameMap:drawLayer(gameMap.layers["plants"])
+          gameMap:drawLayer(gameMap.layers["panels"])
 
           -- BAT
           for i = 1, #bats do
