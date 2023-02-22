@@ -9,6 +9,9 @@ function love.load()
     -- COMMAND INFOS
     text = " f = fullscreen, q = quit, space = attack, arrow keys = move "
 
+    -- VIDEO
+    -- video = love.graphics.newVideo("assets/dialogue2.ogx")
+
     -- SOUNDS
     sounds = {}
     sounds.blip = love.audio.newSource("sounds/blip.wav", "static")
@@ -133,6 +136,10 @@ function love.keypressed(key)
            end
         end
     end
+
+    -- if key == 'd' then
+    --     video:play()
+    -- end
 
     -- PLANTS INTERACTION
     if key == 's' then
@@ -354,6 +361,7 @@ function love.draw()
 
           -- end
           game:draw(game.state.paused)
+          -- love.graphics.draw(video, 0, 0)
       cam:detach() -- for HUD, print under detach()
 
       -- DIALOG
