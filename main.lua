@@ -23,12 +23,6 @@ function love.load()
     })
 
     -- dialogManager:show({
-    --   text = "C'est vraiment aberrant c't'histoire. J'en peux plus moi les gars.",
-    --   title = 'Julien',
-    --   image = love.graphics.newImage('assets/julien.png')
-    -- })
-
-    -- dialogManager:show({
     --   text = "Dit, tu connais Hollow Knight??",
     --   title = 'Julien',
     --   image = love.graphics.newImage('assets/julien.png')
@@ -383,6 +377,7 @@ function love.draw()
           love.graphics.printf(text, 0, 10, love.graphics.getWidth(), "center")
           love.graphics.print("Life: " .. player.life, 10, 10)
           love.graphics.print("Ennemies: " .. #bats, love.graphics.getWidth() - 120, 10)
+          love.graphics.print("a - SIGNS --- s - PLANTS", 80, 10)
       end
 
 end
