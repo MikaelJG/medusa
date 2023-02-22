@@ -12,7 +12,7 @@ function love.load()
     -- SOUNDS
     sounds = {}
     sounds.blip = love.audio.newSource("sounds/blip.wav", "static")
-    sounds.music = love.audio.newSource("sounds/medusa.mp3", "stream")
+    -- sounds.music = love.audio.newSource("sounds/medusa.mp3", "stream")
     sounds.music:setLooping(true)
 
     --DIALOG
@@ -21,15 +21,6 @@ function love.load()
     dialogManager = Dialove.init({
       font = love.graphics.newFont('fonts/vt323/VT323-Regular.ttf', 30)
     })
-
-    dialogManager:push('first dialogue content') -- stores a dialog into memory
-    dialogManager:push('second Dialog content') -- stores a dialog into memory
-    dialogManager:push('third Dialog content') -- stores a dialog into memory
-    dialogManager:push('fourth Dialog content') -- stores a dialog into memory
-    -- dialogManager:pop() -- requests the first pushed dialog to be shown on screen
-
-    -- -- use this approach instead:
-    -- dialogManager:push('Julien!!! Ca va? ')
 
     -- dialogManager:show({
     --   text = "C'est vraiment aberrant c't'histoire. J'en peux plus moi les gars.",
@@ -123,10 +114,12 @@ function love.keypressed(key)
       local px, py = player.collider:getPosition()
       local colliders = world:queryCircleArea(px, py, 8, {'Button'})
     if #colliders > 0 then
-      for i = 1, #panels do
-        dialog = string.format("Je suis panel %s", panels[i])
-        dialogManager:push(dialog)
-        dialogManager:pop()
+        -- panel_1_range between 60 and 90, ...
+        if px > 60 and px < 90 and py > 300 and py < 330 then
+              dialog = string.format("Je suis panel 1")
+              dialogManager:push(dialog)
+              dialogManager:pop()
+        end
       end
       -- dialogManager:pop() -- requests the first pushed dialog to be shown on screen
       end
