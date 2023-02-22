@@ -321,7 +321,7 @@ function love.draw()
           end
 
           -- COLLIDER
-          world:draw()
+          -- world:draw()
 
           -- end
           game:draw(game.state.paused)
