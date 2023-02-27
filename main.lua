@@ -1,10 +1,14 @@
 local love = require "love"
+local Talkies = require('talkies')
 
 math.randomseed(os.time())
 
 local enemies = {}
 
 function love.load()
+    Talkies.backgroundColor = {1, 1, 1, 0,2}
+    Talkies.textSpeed = 'medium'
+    Talkies.font = love.graphics.newFont(24)
 
     -- TIME
     time = 0
@@ -19,29 +23,12 @@ function love.load()
     -- SOUNDS
     sounds = {}
     sounds.blip = love.audio.newSource("sounds/blip.wav", "static")
-    sounds.music = love.audio.newSource("sounds/medusa.mp3", "stream")
-    sounds.music:setLooping(true)
+    -- sounds.music = love.audio.newSource("sounds/medusa.mp3", "stream")
+    -- sounds.music:setLooping(true)
 
     --DIALOG
-    local Dialove = require('libraries/dialove')
 
-    dialogManager = {
-
-        "dialog one",
-        "dialog two",
-        "dialog thee",
-        "dialog four",
-    }
-
-    -- dialogManager = Dialove.init({
-    --   font = love.graphics.newFont('fonts/vt323/VT323-Regular.ttf', 30)
-    -- })
-
-    -- dialogManager:show({
-    --   text = "Dit, tu connais Hollow Knight??",
-    --   title = 'Julien',
-    --   image = love.graphics.newImage('assets/julien.png')
-    -- })
+     -- love.window.showMessageBox( 'title', 'message', 'info', attachtowindow)
 
     --CAMERA
     camera = require ("libraries/camera")
@@ -115,17 +102,21 @@ function love.keypressed(key)
         if #colliders > 0 then
            -- panel_1_range between 60 and 90, ...
            if px > 60 and px < 90 and py > 300 and py < 330 then
-                print(dialogManager[1])
+            Talkies.say("panel one", " lets do it")
            elseif px > 100 and px < 150 and py > 80 and py < 110 then
-                print(dialogManager[2])
+            Talkies.say("2 or three", "panel some")
            elseif px > 100 and px < 150 and py > 80 and py < 110 then
-                print(dialogManager[3])
+            Talkies.say("this 2", "2 ??")
            elseif px > 250 and px < 300 and py > 20 and py < 40 then
-                print(dialogManager[3])
+            Talkies.say("this 3", "panel 3 bitch")
            elseif px > -290 and px < -240 and py > -280 and py < -210 then
-                print(dialogManager[4])
+            Talkies.say("panel4", "this is panel 4")
            end
         end
+    end
+
+    if key == 'return' then
+        Talkies.onAction()
     end
 
     -- PLANTS INTERACTION
@@ -280,7 +271,7 @@ function love.update(dt)
       player.anim:update(dt)
       attack.anim:update(dt)
       world:update(dt)
-      -- dialogManager:update(dt)
+      Talkies.update(dt)
       for i = 1, #bats do
         bats[i].anim:update(dt)
       end
@@ -305,7 +296,7 @@ end
 function love.draw()
 
       if game.state.running or game.state.paused then
-          sounds.music:play()
+          -- sounds.music:play()
 
       cam:attach()
           -- MAP
@@ -357,6 +348,8 @@ function love.draw()
           game:draw(game.state.paused)
           -- love.graphics.draw(video, 0, 0)
       cam:detach() -- for HUD, print under detach()
+
+      Talkies.draw()
 
       elseif game.state.menu then -- draw menu if in menu state
           menu:draw()
