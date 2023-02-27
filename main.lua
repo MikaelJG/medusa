@@ -29,16 +29,13 @@ function love.load()
 
         "dialog one",
         "dialog two",
-        {"dialog thee"}
+        "dialog thee",
+        "dialog four",
     }
-
-    print(dialogManager[1])
 
     -- dialogManager = Dialove.init({
     --   font = love.graphics.newFont('fonts/vt323/VT323-Regular.ttf', 30)
     -- })
-
-    print(#dialogManager)
 
     -- dialogManager:show({
     --   text = "Dit, tu connais Hollow Knight??",
@@ -116,33 +113,19 @@ function love.keypressed(key)
       local px, py = player.collider:getPosition()
       local colliders = world:queryCircleArea(px, py, 8, {'Button'})
         if #colliders > 0 then
-           print(player.collider:getPosition())
            -- panel_1_range between 60 and 90, ...
            if px > 60 and px < 90 and py > 300 and py < 330 then
-                  dialog = string.format("Je suis panel 1")
-                  dialogManager:push(dialog)
+                print(dialogManager[1])
            elseif px > 100 and px < 150 and py > 80 and py < 110 then
-                  dialog = string.format("Je suis panel 2")
-                  dialogManager:push(dialog)
-                  dialogManager:pop()
+                print(dialogManager[2])
            elseif px > 100 and px < 150 and py > 80 and py < 110 then
-                  dialog = string.format("Je suis panel 2")
-                  dialogManager:push(dialog)
-                  dialogManager:pop()
+                print(dialogManager[3])
            elseif px > 250 and px < 300 and py > 20 and py < 40 then
-                  dialog = string.format("Je suis panel 3")
-                  dialogManager:push(dialog)
-                  dialogManager:pop()
+                print(dialogManager[3])
            elseif px > -290 and px < -240 and py > -280 and py < -210 then
-                  dialog = string.format("Je suis panel 4")
-                  dialogManager:push(dialog)
-                  dialogManager:pop()
+                print(dialogManager[4])
            end
         end
-    end
-
-    if key == 'return' then
-          dialogManager:pop()
     end
 
     -- PLANTS INTERACTION
@@ -170,7 +153,6 @@ end
 function love.mousepressed(x, y, button, istouch, presses)
     if button == 1 then
       clickedMouse = true -- set if mouse is clicked
-            dialogManager:pop()
     end
 end
 
@@ -375,9 +357,6 @@ function love.draw()
           game:draw(game.state.paused)
           -- love.graphics.draw(video, 0, 0)
       cam:detach() -- for HUD, print under detach()
-
-      -- DIALOG
-      dialogManager:draw()
 
       elseif game.state.menu then -- draw menu if in menu state
           menu:draw()
