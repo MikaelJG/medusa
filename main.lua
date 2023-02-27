@@ -6,6 +6,10 @@ local enemies = {}
 
 function love.load()
 
+    -- TIME
+    time = 0
+	  timeLimit = 100
+
     -- COMMAND INFOS
     text = " F = fullscreen | Q = quit | space = attack | <^v> = move | A = Panels interaction | S = Loot"
 
@@ -306,6 +310,14 @@ function love.update(dt)
       -- updates cam everyframe to follow player
       cam:lookAt(player.x, player.y)
 
+      -- TIMER
+      time = time + dt
+      if time >= timeLimit then
+        player.collider:setPosition(20, 400)
+        game.night = game.night + 1
+        time = 0 --optional if you want it to happen repeatedly
+      end
+
 end
 
 function love.draw()
@@ -357,7 +369,7 @@ function love.draw()
           end
 
           -- COLLIDER
-          world:draw()
+          -- world:draw()
 
           -- end
           game:draw(game.state.paused)
