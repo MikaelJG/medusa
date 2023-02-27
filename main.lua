@@ -7,7 +7,7 @@ local enemies = {}
 function love.load()
 
     -- COMMAND INFOS
-    text = " f = fullscreen, q = quit, space = attack, arrow keys = move "
+    text = " F = fullscreen | Q = quit | space = attack | <^v> = move | A = Panels interaction | S = Loot"
 
     -- VIDEO
     -- video = love.graphics.newVideo("assets/dialogue2.ogx")
@@ -357,7 +357,7 @@ function love.draw()
           end
 
           -- COLLIDER
-          -- world:draw()
+          world:draw()
 
           -- end
           game:draw(game.state.paused)
@@ -383,9 +383,9 @@ function love.draw()
           love.graphics.rectangle("fill", 0, 0, love.graphics.getWidth(), 35) -- x, y, width, height
           love.graphics.setColor(255, 255, 255)
           love.graphics.printf(text, 0, 10, love.graphics.getWidth(), "center")
-          love.graphics.print("Life: " .. player.life, 10, 10)
+          love.graphics.print("Night: " .. game.night, 10, 10)
+          love.graphics.print("Life: " .. player.life, 100, 10)
           love.graphics.print("Ennemies: " .. #bats, love.graphics.getWidth() - 120, 10)
-          love.graphics.print("a - SIGNS --- s - PLANTS", 80, 10)
       end
 
 end

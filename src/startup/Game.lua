@@ -3,6 +3,7 @@ local Text = require "../components/Text"
 
 function Game()
     return {
+        night = 1,
         level = 1,
         state = {
             -- start with the menu by default
