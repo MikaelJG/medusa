@@ -120,20 +120,20 @@ local Talkies = {
   -- Theme
   indicatorCharacter      = ">",
   optionCharacter         = "-",
-  padding                 = 10,
+  padding                 = 30,
   talkSound               = nil,
   optionSwitchSound       = nil,
   inlineOptions           = true,
   
   titleColor              = {1, 1, 1},
   titleBackgroundColor    = nil,
-  titleBorderColor        = nil,
+  titleBorderColor        = {0.2, 0.2, 0.2},
   messageColor            = {1, 1, 1},
   messageBackgroundColor  = {0, 0, 0, 0.8},
-  messageBorderColor      = nil,
+  messageBorderColor      = {0.2, 0.2, 0.2},
   
-  rounding                = 0,
-  thickness               = 0,
+  rounding                = 5,
+  thickness               = 5,
   
   textSpeed               = 1 / 60,
   font                    = love.graphics.newFont(),
