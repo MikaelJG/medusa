@@ -10,6 +10,38 @@ function love.load()
     Talkies.textSpeed = 'medium'
     Talkies.font = love.graphics.newFont(24)
 
+    -- SHADE [[ this is coded in GLSL for love2D shaders
+    -- solid
+ --     shader = love.graphics.newShader[[
+ --         extern number playerX = 0;
+ --         extern number playerY = 0;
+ -- 
+ --     number radius = 400;
+ --     vec4 effect( vec 4 color, Image texture, vec 2 texture_coords, vec2 screen_coords ) {
+ --         number distance = pow(pow(screen_coords.x - playerX, 2) + pow(screen_coords.y - playerY, 2), 05);
+ --         if (distance < radius) {
+ --             return vec4(0, 0, 0, 0);
+ --         }
+ --         else {
+ --             return vec4(0, 0, 0, 1);
+ --         }
+ --     }
+ -- ]]
+
+    -- light transparency 
+ --     shader = love.graphics.newShader[[
+ --         extern number playerX = 0;
+ --         extern number playerY = 0;
+ -- 
+ --     number radius = 400;
+ --     vec4 effect( vec 4 color, Image texture, vec 2 texture_coords, vec2 screen_coords ) {
+ --         number distance = pow(pow(screen_coords.x - playerX, 2) + pow(screen_coords.y - playerY, 2), 05);
+ --         number alpha = distance / radius; 
+ --         return vec4(0, 0, 0, alpha);
+ --     }
+ --]]
+
+
     -- TIME
     time = 0
 	  timeLimit = 100
