@@ -25,9 +25,20 @@ function love.load()
     --DIALOG
     local Dialove = require('libraries/dialove')
 
-    dialogManager = Dialove.init({
-      font = love.graphics.newFont('fonts/vt323/VT323-Regular.ttf', 30)
-    })
+    dialogManager = {
+
+        "dialog one",
+        "dialog two",
+        {"dialog thee"}
+    }
+
+    print(dialogManager[1])
+
+    -- dialogManager = Dialove.init({
+    --   font = love.graphics.newFont('fonts/vt323/VT323-Regular.ttf', 30)
+    -- })
+
+    print(#dialogManager)
 
     -- dialogManager:show({
     --   text = "Dit, tu connais Hollow Knight??",
@@ -62,12 +73,8 @@ function love.load()
 
     for i = 1, #panels do
         local panel = panels[i]
-        print(panel.x, panel.y)
-        -- panel = world:newRectangleCollider(panel.x, panel.y, panel.width, panel.height)
         button = world:newRectangleCollider(panel.x, panel.y, 15, 10)
         table.insert(buttons, button)
-        -- panel:setType("static")
-        -- panel:setCollisionClass("Panel")
     end
 
     local plants = gameMap.layers["plants"].objects
@@ -76,12 +83,8 @@ function love.load()
 
     for i = 1, #plants do
       local plant = plants[i]
-      print(plant.x, plant.y)
-      -- panel = world:newRectangleCollider(panel.x, panel.y, panel.width, panel.height)
       plantsButton = world:newRectangleCollider(plant.x, plant.y, 15, 10)
       table.insert(plantsButtons, plantsButton)
-      -- panel:setType("static")
-      -- panel:setCollisionClass("Panel")
     end
 
       world:addCollisionClass('Player')
@@ -105,8 +108,6 @@ function love.load()
       -- panel:setType('static')
 end
 
-
-
 -- KEYBINDINGS [ START ]--
 function love.keypressed(key)
 
@@ -120,7 +121,6 @@ function love.keypressed(key)
            if px > 60 and px < 90 and py > 300 and py < 330 then
                   dialog = string.format("Je suis panel 1")
                   dialogManager:push(dialog)
-                  dialogManager:pop()
            elseif px > 100 and px < 150 and py > 80 and py < 110 then
                   dialog = string.format("Je suis panel 2")
                   dialogManager:push(dialog)
@@ -141,9 +141,9 @@ function love.keypressed(key)
         end
     end
 
-    -- if key == 'd' then
-    --     video:play()
-    -- end
+    if key == 'return' then
+          dialogManager:pop()
+    end
 
     -- PLANTS INTERACTION
     if key == 's' then
@@ -298,7 +298,7 @@ function love.update(dt)
       player.anim:update(dt)
       attack.anim:update(dt)
       world:update(dt)
-      dialogManager:update(dt)
+      -- dialogManager:update(dt)
       for i = 1, #bats do
         bats[i].anim:update(dt)
       end
