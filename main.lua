@@ -161,6 +161,8 @@ function love.keypressed(key)
     end
 
     -- MENU
+    -- This is solid broken
+    -- keep?
     if game.state.running then
         if key == "escape" then
             game:changeGameState("paused")
